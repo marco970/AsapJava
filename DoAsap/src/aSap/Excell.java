@@ -5,11 +5,16 @@ import java.io.IOException;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFFont;
 
 public class Excell {
 
@@ -32,6 +37,19 @@ public class Excell {
            //Merging cells by providing cell index  
          sheet.addMergedRegion(new CellRangeAddress(1,1,2,3));  
          row.setHeightInPoints((3*sheet.getDefaultRowHeightInPoints())); 
+         
+         HSSFCell hssfCell = row.createCell(6);
+         
+         
+         HSSFRichTextString richString = new HSSFRichTextString( "Hello, World!" );
+         HSSFFont font = workbook.createFont();
+         font.setFontHeightInPoints((short) 30);
+         font.setFontName("IMPACT");
+         font.setItalic(true);
+         font.setColor(HSSFFont.COLOR_RED);
+
+         richString.applyFont( 9, 13, font );
+         hssfCell.setCellValue( richString );
 		
 		try {
 			workbook.write(new FileOutputStream("test_xls.xls"));
