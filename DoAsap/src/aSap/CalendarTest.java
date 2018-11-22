@@ -21,9 +21,10 @@ public class CalendarTest {
 	  int rok;
 	  int mies;
 
-	  public CalendarTest(int rok, int mies) {
+	  public CalendarTest(int rok, int month) {
 	     this.rok = rok;
-	     this.mies = mies - 1;
+	     this.mies = month - 1;
+	     System.out.println(mies);
 	     //kalend.set(rok, mies);
 	     /*
 	     for (int i = 1; i<=ldni[mies]; i++)	{
@@ -33,7 +34,7 @@ public class CalendarTest {
 	     */
 	  }
 	  public int getDayNo(int month)	{
-		  return ldni[month];
+		  return ldni[mies];
 	  }
 	  
 	  public String getDayName(int dayNo) {
@@ -45,7 +46,7 @@ public class CalendarTest {
 	  }
 	  public String getDate(int dayNo)	{
 		  String date = "";
-		  date = dayNo+"/"+mies;
+		  date = dayNo+"/"+(mies+1)+"/"+rok;
 		  return date;
 	  }
 	  

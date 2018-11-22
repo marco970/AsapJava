@@ -37,16 +37,20 @@ public class Excell {
 		//HSSFCell cell = row.createCell(0);
 		//cell.setCellValue("siemandero");
 		
-		
+		HSSFRow row0 = sheet.createRow(0); 
 		HSSFRow row = sheet.createRow(1);  
 		HSSFCell cell = row.createCell(1);  
+		HSSFCell cell2 = row.createCell(2);
+		HSSFCell cell0 = row0.createCell(0);
+		cell0.setCellValue("klmn");
 		 HSSFCellStyle cs = workbook.createCellStyle();
 		 cs.setWrapText(true);
 		 cell.setCellStyle(cs);
          cell.setCellValue("Two cells have merged \nadding new line of text \nthis is the third line");  
          sheet.autoSizeColumn(2);  
+         cell2.setCellValue("abc");
            //Merging cells by providing cell index  
-         sheet.addMergedRegion(new CellRangeAddress(1,1,2,3));  
+         sheet.addMergedRegion(new CellRangeAddress(0,0,0,4));  
          row.setHeightInPoints((3*sheet.getDefaultRowHeightInPoints())); 
          
          HSSFCell hssfCell = row.createCell(6);
