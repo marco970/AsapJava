@@ -9,6 +9,7 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -31,6 +32,14 @@ public class RaportExcell {
 		
 		HSSFCellStyle cs = workbook.createCellStyle();
 		cs.setWrapText(true);
+		HSSFCellStyle style = workbook.createCellStyle();
+		
+		
+		Font fontNormal = workbook.createFont();  
+		fontNormal.setFontHeightInPoints((short)9);  
+		fontNormal.setFontName("Tahoma");  
+		
+		cs.setFont(fontNormal);  
 		
 		//generowanie wierszy i komórek
 		
@@ -82,7 +91,7 @@ public class RaportExcell {
 				+ "\nProwadzenie negocjacji z oferentami, w tym ponowna analiza przesłanych ofert po negocjacjach."
 				+ "\nPrzygotowanie dokumentacji podsumowującej postępowanie zakupowe oraz wprowadzenie jej do systemu zakupowego");
 		
-		rowArr[4].setHeightInPoints(120);
+		rowArr[4].setHeightInPoints(150);
 		cellArr[5][0].setCellValue("Obsługa umów zakupowych - etap Dokument Końcowy (DK)");
 		//cellArr[5][1].setCellValue("");		
 		rowArr[5].setHeightInPoints(100);
