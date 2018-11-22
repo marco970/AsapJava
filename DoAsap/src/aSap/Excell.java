@@ -1,5 +1,6 @@
 package aSap;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -17,8 +18,18 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 
 public class Excell {
+	
+	public Excell()	{
+		HSSFWorkbook workbook = new HSSFWorkbook();
+		HSSFSheet sheet = workbook.createSheet("hejYou");
+		
+		CalendarTest ct = new CalendarTest(2018, 2);
+		
+		
+		//String date = ct.getDate(i);
+	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet("hejYou");
@@ -51,13 +62,11 @@ public class Excell {
          richString.applyFont( 9, 13, font );
          hssfCell.setCellValue( richString );
 		
-		try {
+		
 			workbook.write(new FileOutputStream("test_xls.xls"));
 			workbook.close(); 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		
 		
 	}
 
