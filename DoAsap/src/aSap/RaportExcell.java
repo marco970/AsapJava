@@ -17,25 +17,22 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class RaportExcell {
 	
-	public RaportExcell() throws IOException	{
+	public RaportExcell(String kupiec) throws IOException	{
 		
 		int year = 2018;
 		int month = 2;
 		int rowNumber = 9;
 		CalendarTest ct = new CalendarTest(year, month);
 		int dniMies = ct.getDayNo(month);
-		
-		
+
 		HSSFWorkbook workbook = new HSSFWorkbook();
-		HSSFSheet sheet = workbook.createSheet("Kupiec");
+		HSSFSheet sheet = workbook.createSheet(kupiec);
 		sheet.autoSizeColumn(2);  
 		
 		HSSFCellStyle cs = workbook.createCellStyle();
 		cs.setWrapText(true);
 		
 		//generowanie wierszy i komórek
-		//ArrayList<HSSFRow> rowList = new ArrayList<HSSFRow>();
-		//ArrayList<HSSFCell> cellList = new ArrayList<HSSFCell>();
 		
 		HSSFRow[] rowArr = new HSSFRow[rowNumber]; //robię na listach, to do wywalenia
 		HSSFCell[][] cellArr = new HSSFCell[rowNumber][dniMies*2+3];
@@ -54,12 +51,6 @@ public class RaportExcell {
 				cellArr[i][j].setCellStyle(cs);
 			}
 		}
-			
-		//
-		
-		//sheet.addMergedRegion(new CellRangeAddress(1,1,2,3));
-		//sheet.addMergedRegion(new CellRangeAddress(1,1,4,5));
-		//sheet.addMergedRegion(new CellRangeAddress(1,4,1,5));
 		
 		//generowanie paska z datami
 		int l=1;
@@ -73,16 +64,42 @@ public class RaportExcell {
 			sheet.setColumnWidth(j+1, 5000);
 			
 		}
+		//generowanie pierwszych 2 kolumn
+		sheet.setColumnWidth(0, 10000);
+		sheet.setColumnWidth(1, 12000);
+		cellArr[1][0].setCellValue("Pracownik: "+kupiec);
+		cellArr[2][0].setCellValue("RODZAJ USŁUGI/ ETAP POSTĘPOWANIA");
+		cellArr[2][1].setCellValue("ZAKRES ETAPU POSTĘPOWANIA");
+		cellArr[3][0].setCellValue("Realizacja zakupów i wyboru dostawców\n- etap Zlecenie Zakupu (ZZ)");
+		cellArr[3][1].setCellValue("Weryfikacja zasadności i trybu dokonania zakupu planowanego przez "
+				+ "CP oraz poprawności i kompletności danych "
+				+ "wprowadzonych przez komórkę CP inicjująca zakup.");
+		rowArr[3].setHeightInPoints(100);
+		cellArr[4][0].setCellValue("Realizacja zakupów i wyboru dostawców - etap Postępowanie Zakupowe (PZ)");
+		cellArr[4][1].setCellValue("Przygotowanie regulaminów, kryteriów oceny, harmonogramu postępowania itd. "
+				+ "\nPrzygotowanie i wysyłanie zapytań informacyjnych/ofertowych na podstawie merytorycznego wkładu CP."
+				+ "\nAnaliza i ocena ofert otrzymanych w ramach prowadzonego postępowania, w tym wyjaśnianie z Oferentami szczegółów oferty."
+				+ "\nProwadzenie negocjacji z oferentami, w tym ponowna analiza przesłanych ofert po negocjacjach."
+				+ "\nPrzygotowanie dokumentacji podsumowującej postępowanie zakupowe oraz wprowadzenie jej do systemu zakupowego");
 		
+		rowArr[4].setHeightInPoints(120);
+		cellArr[5][0].setCellValue("Obsługa umów zakupowych - etap Dokument Końcowy (DK)");
+		//cellArr[5][1].setCellValue("");		
+		rowArr[5].setHeightInPoints(100);
+		cellArr[6][0].setCellValue("Inne");
+		cellArr[6][1].setCellValue("Udział w uzgodnieniach i spotkaniach z przedstawicielami CP "
+				+ "dotyczących planowanych postępowań zakupowych; przygotowanie danych w ramach  "
+				+ "zleconych inicjatyw optymalizacyjnych, analizy rynku dostawców, itp.;");
+		rowArr[6].setHeightInPoints(100);
 		
-		
-		
+		cellArr[7][1].setCellValue("SUMA");
+		rowArr[7].setHeightInPoints(25);
 		
 		workbook.write(new FileOutputStream(month+"Raport.xls"));
 		workbook.close();	//ostatni wiersz
 	}
 	public static void main(String[] args) throws IOException	{
-		new RaportExcell();
+		new RaportExcell("Marcin Kuciak");
 		//do testów, potem wywalić metodę
 	}
 }
