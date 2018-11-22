@@ -6,12 +6,17 @@ import java.util.ArrayList;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -60,7 +65,18 @@ public class RaportExcell {
 				cellArr[i][j].setCellStyle(cs);
 			}
 		}
+		//Fonty
+		HSSFFont f1 = workbook.createFont();
+		f1.setBold(true);
+		//f1.setColor(HSSFColor.HSSFColorPredefined.RED.getIndex());  
 		
+		
+		Font f2 = workbook.createFont();
+		f2.setBold(true);
+		f2.setColor(HSSFColor.HSSFColorPredefined.RED.getIndex()); 
+		
+		Font f3 = workbook.createFont();
+		Font f4 = workbook.createFont();
 		//generowanie paska z datami
 		int l=1;
 		for (int j = 2; j<=dniMies*2-1+2; j=j+2)	{
@@ -73,12 +89,22 @@ public class RaportExcell {
 			sheet.setColumnWidth(j+1, 5000);
 			
 		}
+		
 		//generowanie pierwszych 2 kolumn
+			
 		sheet.setColumnWidth(0, 10000);
 		sheet.setColumnWidth(1, 12000);
-		cellArr[1][0].setCellValue("Pracownik: "+kupiec);
-		cellArr[2][0].setCellValue("RODZAJ USŁUGI/ ETAP POSTĘPOWANIA");
-		cellArr[2][1].setCellValue("ZAKRES ETAPU POSTĘPOWANIA");
+		RichTextString c10 = new HSSFRichTextString("Pracownik: "+kupiec);
+		cellArr[1][0].setCellValue(c10);
+		c10.applyFont(f2);
+		
+		RichTextString c20 = new HSSFRichTextString("RODZAJ USŁUGI/ ETAP POSTĘPOWANIA");
+		cellArr[2][0].setCellValue(c20);
+		RichTextString c21 = new HSSFRichTextString("ZAKRES ETAPU POSTĘPOWANIA");
+		cellArr[2][1].setCellValue(c21);
+		c20.applyFont(f1);
+		c21.applyFont(f1);
+		
 		cellArr[3][0].setCellValue("Realizacja zakupów i wyboru dostawców\n- etap Zlecenie Zakupu (ZZ)");
 		cellArr[3][1].setCellValue("Weryfikacja zasadności i trybu dokonania zakupu planowanego przez "
 				+ "CP oraz poprawności i kompletności danych "
@@ -104,7 +130,7 @@ public class RaportExcell {
 		cellArr[7][1].setCellValue("SUMA");
 		rowArr[7].setHeightInPoints(25);
 		
-		workbook.write(new FileOutputStream(month+"Raport.xls"));
+		workbook.write(new FileOutputStream(month+"_Raport.xls"));
 		workbook.close();	//ostatni wiersz
 	}
 	public static void main(String[] args) throws IOException	{
