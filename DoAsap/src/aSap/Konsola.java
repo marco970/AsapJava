@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Konsola extends JPanel {
+	//do wywalenia cała klasa
 	
 	public Konsola(String a)	{
 		super();

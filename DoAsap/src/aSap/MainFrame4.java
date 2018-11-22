@@ -49,6 +49,7 @@ public class MainFrame4 extends JFrame implements ActionListener {
 	 * konstruktor 
 	 */
 	public MainFrame4() {
+		//do wywalenia dała klasa
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
