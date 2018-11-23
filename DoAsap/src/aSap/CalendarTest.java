@@ -9,8 +9,8 @@ public class CalendarTest {
 
 	  static Calendar kalend = new GregorianCalendar();
 
-	  static String[] nazwaDnia = {  "niedziela", "poniedziałek", "wtorek",
-	                                 "środa", "czwartek", "piątek", "sobota" };
+	  static String[] nazwaDnia = {  "nd", "pon", "wt",
+	                                 "śr", "czw", "pt", "sb" };
 
 	  static String[] nazwaMies = { "stycznia", "lutego", "marca", "kwietnia",
 	                           "maja", "czerwca", "lipca", "sierpnia",
