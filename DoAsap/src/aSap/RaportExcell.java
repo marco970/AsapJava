@@ -14,6 +14,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.sl.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.RichTextString;
@@ -27,6 +28,14 @@ public class RaportExcell {
 	
 	public RaportExcell(String kupiec) throws IOException	{
 		
+		String[] kolumns = 	{
+							"C", "E", "G", "I", "K", "M", "O", "Q",	"S", 
+							"U", "W", "Y", "AA", "AC",	"AE", "AG", "AI",	
+							"AK","AM", "AO", "AQ", "AS", "AU", "AW", "AY", 
+							"BA", "BC", "BE", "BG", "BI", "BK"
+							};
+			
+		
 		int year = 2018;
 		int month = 2;
 		int rowNumber = 9;
@@ -35,11 +44,11 @@ public class RaportExcell {
 
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet(kupiec);
-		sheet.autoSizeColumn(2);  
+		//sheet.autoSizeColumn(2);  
 		
 		HSSFCellStyle cs = workbook.createCellStyle();
 		cs.setWrapText(true);
-		HSSFCellStyle style = workbook.createCellStyle();
+		//HSSFCellStyle style = workbook.createCellStyle();
 		
 		
 		Font fontNormal = workbook.createFont();  
@@ -131,21 +140,38 @@ public class RaportExcell {
 				CellStyle cs6 = workbook.createCellStyle();
 				CellStyle cs7 = workbook.createCellStyle();
 				
-				//generowanie paska z datami
+				//generowanie paska z datami i kontentu
 				int l=1;
 				for (int j = 2; j<=dniMies*2-1+2; j=j+2)	{
 					cellArr[0][j+1].setCellValue(ct.getDayName(l));
 					cellArr[0][j+1].setCellStyle(cs1);
 					cellArr[1][j].setCellValue(ct.getDate(l));
 					cellArr[1][j].setCellStyle(cs2);
-					l++;
+					
 					sheet.addMergedRegion(new CellRangeAddress(1,1,j,j+1));
 					cellArr[2][j].setCellValue("liczba\ngodzin");
 					cellArr[2][j].setCellStyle(cs1);
 					cellArr[2][j+1].setCellValue("opis postępowania\nlub nr z systemu");
 					cellArr[2][j+1].setCellStyle(cs1);
 					sheet.setColumnWidth(j+1, 5000);	
+					//dalej generujemy kontent
+					
+					//pole z sumą
+					
+					String formula = "SUM("+kolumns[l-1]+"4:"+kolumns[l-1]+"7)";
+					//System.out.println(formula);
+					cellArr[7][j].setCellType(CellType.FORMULA);
+					cellArr[7][j].setCellFormula(formula);
+					cellArr[7][j].setCellStyle(cs2);
+					
+					
+					
+					
+					l++;
 				}
+				//generowanie kolumny podsumowania
+				cellArr[7][dniMies*2+2].setCellValue("hello");
+				
 				
 				//generowanie pierwszych 2 kolumn
 					
@@ -206,9 +232,10 @@ public class RaportExcell {
 						+ "zleconych inicjatyw optymalizacyjnych, analizy rynku dostawców, itp.;");
 				cellArr[6][1].setCellStyle(cs5);
 				
+				rowArr[7].setHeightInPoints(25);
 				cellArr[7][1].setCellValue("SUMA");
 				cellArr[7][1].setCellStyle(cs3);
-				rowArr[7].setHeightInPoints(25);
+
 				
 				workbook.write(new FileOutputStream(month+"_Raport.xls"));
 				workbook.close();	//ostatni wiersz
