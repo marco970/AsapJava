@@ -12,9 +12,9 @@ public class CalendarTest {
 	  static String[] nazwaDnia = {  "nd", "pon", "wt",
 	                                 "śr", "czw", "pt", "sb" };
 
-	  static String[] nazwaMies = { "stycznia", "lutego", "marca", "kwietnia",
-	                           "maja", "czerwca", "lipca", "sierpnia",
-	                           "września", "października", "listopada", "grudnia"
+	  static String[] nazwaMies = { "styczeń", "luty", "marzec", "kwiecień",
+	                           "maj", "czerwiec", "lipiec", "sierpień",
+	                           "wrzesień", "październik", "listopad", "grudzień"
 	                         };
 	  static int[] ldni = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -24,7 +24,7 @@ public class CalendarTest {
 	  public CalendarTest(int rok, int month) {
 	     this.rok = rok;
 	     this.mies = month - 1;
-	     System.out.println(mies);
+	     System.out.println(mies+" "+nazwaMies[mies]);
 	     //kalend.set(rok, mies);
 	     /*
 	     for (int i = 1; i<=ldni[mies]; i++)	{

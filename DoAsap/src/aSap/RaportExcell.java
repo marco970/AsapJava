@@ -37,7 +37,7 @@ public class RaportExcell {
 			
 		
 		int year = 2018;
-		int month = 2;
+		int month = 1;
 		int rowNumber = 9;
 		CalendarTest ct = new CalendarTest(year, month);
 		int dniMies = ct.getDayNo(month);
@@ -170,8 +170,21 @@ public class RaportExcell {
 					l++;
 				}
 				//generowanie kolumny podsumowania
-				cellArr[7][dniMies*2+2].setCellValue("hello");
 				
+				int lstCollIndx = cellArr[2][dniMies*2+2].getColumnIndex();
+				sheet.setColumnWidth(lstCollIndx, 5000);
+				
+				cellArr[2][dniMies*2+2].setCellValue("podsumowanie: ");
+				cellArr[2][dniMies*2+2].setCellStyle(cs2);
+				
+				
+				String begin = kolumns[0];
+				String end = kolumns[dniMies-1];
+				String formulaSum = "SUM("+begin+"8:"+end+"8)";
+				cellArr[7][dniMies*2+2].setCellType(CellType.FORMULA);
+				cellArr[7][dniMies*2+2].setCellFormula(formulaSum);
+				cellArr[7][dniMies*2+2].setCellStyle(cs2);
+				System.out.println(formulaSum);
 				
 				//generowanie pierwszych 2 kolumn
 					
