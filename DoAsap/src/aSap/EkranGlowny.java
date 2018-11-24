@@ -28,14 +28,22 @@ public class EkranGlowny implements ActionListener {
 	private MainTableModel data;
 	private JPopupMenu popupMenu;
 	private JTable lista;
+	private JMenuItem[] months = new JMenuItem[12];
+	JMenu raport=null;  
 	//private ErrMessage errMessage;
 
 	//do menu - string pierwszy nazwa menu, kolejne - nazwy MenuItemów
-	String[] start = {"Start", "Nowy", "Exit"};
+	String[] start = {"Start", "Nowe postępowanie", "Raport miesięczny", "Exit"};
 	String[] sort = {"Sort","Nieaktywne", "Aktywne","ToDo","Status","Tryb"};
 	String[] toDo = {"ToDo", "Lista", "Notatki"};
 	String[] notatki = {"Notatki","Nowa notatka","Edytuj"};
 	String[] popupStr = {"modyfikacja", "zakończ postępowanie", "zawieś postepowanie"};
+	
+	static String[] nazwaMies = { "styczeń", "luty", "marzec", "kwiecień",
+            "maj", "czerwiec", "lipiec", "sierpień",
+            "wrzesień", "październik", "listopad", "grudzień"
+          };
+	
 	//sortowanie filtrowanie
 	TableRowSorter<MainTableModel> sorter;
 	RowFilter<Object, Object> filter;
@@ -92,10 +100,27 @@ public class EkranGlowny implements ActionListener {
 		
 		menuBar = new JMenuBar();
 
+
+		
+		
+		/**
+		 * To poniżej to jest do podmenu, żeby wygenerować raport. 
+		 * Moje metody doMassAddMenu niestety nie przewidują podmenu i to podmenu zostało zrobione chujowo
+		 * metoda poowinna być bardziej uniwersalna, ta jest zrobiona pod konkretną pozycję
+		 * To powinno być poprawione w kolejnych wersjach.
+		 */
+		for(int i =0; i<=months.length-1; i++)	{
+			months[i] = mi(nazwaMies[i]);
+		}
+		
+		raport = new JMenu(start[2]);
+		doMassAddMenu(raport, months);
+		
 		doMassAddMenu(menuBar, start);
 		doMassAddMenu(menuBar, sort);
 		doMassAddMenu(menuBar, toDo);
 		doMassAddMenu(menuBar, notatki);
+		
 		
 		popupMenu = new JPopupMenu();
 		doMassAddMenu(popupMenu, popupStr);
@@ -120,6 +145,7 @@ public class EkranGlowny implements ActionListener {
 		//popup.add(menu);
 		for (int i =0; i<=args.length-1; i++)	{
 			JMenuItem menuItem = mi(args[i]);
+			
 			popup.add(menuItem);
 			//menuItem.addActionListener(this);
 		}
@@ -128,8 +154,15 @@ public class EkranGlowny implements ActionListener {
 		JMenu menu = new JMenu(args[0]);
 		mb.add(menu);
 		for (int i =1; i<=args.length-1; i++)	{
-			JMenuItem menuItem = mi(args[i]);
-			menu.add(menuItem);
+			if (args[0].equals("Start")&&i==2)	{
+				menu.add(raport);
+				
+			}
+			else	{
+				JMenuItem menuItem = mi(args[i]);
+				menu.add(menuItem);
+			}
+			
 			
 		}
 	}
@@ -172,14 +205,18 @@ public class EkranGlowny implements ActionListener {
 
 		//Object z = e.getSource();
 		//int selectedRow = lista.getSelectedRow();
-		if (u.equals(start[2]))	{
+		if (u.equals(start[3]))	{
 			//eg.dispose();
 			System.exit(0);
 		}
-		ErrMessageShow errMS = new ErrMessageShow(data);
+		ErrMessageShow errMS = new ErrMessageShow(data); 		//do wywalenia?
 		if (u.equals(start[1]))	{
 			//new OpForm1("Dodaj nowe postępowanie", data.getRowCount()+1, data, errMS);
 			new NewForm(data.getRowCount()+1, data);
+		}
+		if (u.equals("styczeń")){
+			System.out.println("witamy w styczniu"+ u);
+			
 		}
 		if (u.equals(sort[1]))	{
 			//System.out.println("sort teraz "+u);
