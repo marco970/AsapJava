@@ -2,6 +2,8 @@ package aSap;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -111,10 +113,21 @@ public class EkranGlowny implements ActionListener {
 		 */
 		for(int i =0; i<=months.length-1; i++)	{
 			months[i] = mi(nazwaMies[i]);
+			/*
+			 * do tego dodać 
+			 *  - bierzący miesiąc
+			 *  - skrócić listę do 3 poprzednich miesięcy
+			 *  - do tych miesięcy dodać rok
+			 *  - zrobić okienko do inny okres
+			 * 
+			 */
 		}
 		
 		raport = new JMenu(start[2]);
 		doMassAddMenu(raport, months);
+		
+		
+		
 		
 		doMassAddMenu(menuBar, start);
 		doMassAddMenu(menuBar, sort);
@@ -199,6 +212,8 @@ public class EkranGlowny implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		String u = e.getActionCommand();
+		Object q = (Object) e.getSource();
+		//Object w = (Object) e.
 		//OknoForm okFo = null;		//znaczy oknoForm. 
 		//int selectedRow = 0;
 		//int realSelectedRow = 0;
@@ -215,7 +230,7 @@ public class EkranGlowny implements ActionListener {
 			new NewForm(data.getRowCount()+1, data);
 		}
 		if (u.equals("styczeń")){
-			System.out.println("witamy w styczniu"+ u);
+			System.out.println(u+"--"+Arrays.asList(nazwaMies).indexOf(u)+"--"+q.toString());
 			
 		}
 		if (u.equals(sort[1]))	{
