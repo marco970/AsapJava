@@ -23,7 +23,7 @@ public class RawForm {
 
 
 	/**
-	 * Create the frame
+	 * Create the framevcc
 	 */
 	public RawForm(String title, String mainLab) {
 		frame = new JFrame(title);
