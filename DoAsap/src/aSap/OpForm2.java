@@ -72,6 +72,7 @@ public class OpForm2 implements ActionListener, FocusListener {
 		this.validateArr = new String[model.getColumnCount()-model.getNumberDs()]; //out
 		
 		//ramka
+		//-----------to do wyjebki
 		opForm = new JFrame();
 		opForm.setTitle(nazwa);
 		opForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -82,12 +83,10 @@ public class OpForm2 implements ActionListener, FocusListener {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		opForm.setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("", "[grow]", "[grow][][]"));//różnica
-		
-		panel = new JPanel();
+		//-------------dotąd
+		panel = new JPanel();	//tu metoda klasy dziedziczonej
 		contentPane.add(panel, "cell 0 0,grow");
-		
-		//int colCount = model.getColumnCount();
-		
+
 		//definicje od rysunku-----------------------
 		JLabel[] nazwaPola = new JLabel[colCount];
 		
@@ -253,8 +252,8 @@ public class OpForm2 implements ActionListener, FocusListener {
 		}//koniec dużego for-----------------------
 		tfAll = a;
 		//przycisk---------------------------------------
-		btnSave = new JButton("save");
-		btnClose = new JButton("close");
+		btnSave = new JButton("Zapisz");
+		btnClose = new JButton("Anuluj");
 		btnSave.addActionListener(this);
 		btnClose.addActionListener(this);
 		
@@ -265,8 +264,10 @@ public class OpForm2 implements ActionListener, FocusListener {
 		contentPane.add(separator, "cell 0 1");
 		*/
 		btnSave.setHorizontalAlignment(SwingConstants.LEFT);
-		contentPane.add(btnSave, "cell 0 2");
+		
+		//to do dziedziczonej metody
 		contentPane.add(btnClose, "cell 0 2");
+		contentPane.add(btnSave, "cell 0 2");
 	
 		//dalej
 		//nowe etykiety błędów-----------
