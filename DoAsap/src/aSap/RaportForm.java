@@ -50,25 +50,15 @@ public class RaportForm extends RawForm implements ActionListener {
 		//String month = new SimpleDateFormat("MMMMMMMMMMM").format(cal.getTime());
 		
 		int m = cal.get(Calendar.MONTH);
-		System.out.println(cal.get(Calendar.MONTH));
+		//System.out.println(cal.get(Calendar.MONTH));
 		int l = m;
 		for (int i = m; i<=m+11; i++)	{
-			//cal.set(Calendar.MONTH, i);
-			//months[i-m] = new SimpleDateFormat("MMMMMMMMMMM").format(cal.getTime());
-			if (i<=11)	{
-				l=i;
-			}
-			else	{
-				l=i-12;
-			}
-			System.out.print(i+"*"+l+"   ");
-			System.out.println(months[l]);
+			if (i<=11) l=i;
+			else l=i-12;
 			monthArr[i-m] =  months[l];
-			
 		}
-		//System.out.println(cal.get(Calendar.MONTH));
 		
-		//zawartość specjalizacja 
+
 		btnSave.addActionListener(this);
 		
 		btnCancel.addActionListener(this);
