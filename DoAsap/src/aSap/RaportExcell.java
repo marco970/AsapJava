@@ -25,8 +25,10 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class RaportExcell {
+	int year;
+	int month;
 	
-	public RaportExcell(String kupiec) throws IOException	{
+	public RaportExcell(String kupiec, int monthP, int yearP) throws IOException	{
 		
 		String[] kolumns = 	{
 							"C", "E", "G", "I", "K", "M", "O", "Q",	"S", 
@@ -36,8 +38,8 @@ public class RaportExcell {
 							};
 			
 		
-		int year = 2018;
-		int month = 1;
+		year = yearP;
+		month = monthP;
 		int rowNumber = 9;
 		CalendarTest ct = new CalendarTest(year, month);
 		int dniMies = ct.getDayNo(month);
@@ -254,7 +256,7 @@ public class RaportExcell {
 				workbook.close();	//ostatni wiersz
 		}
 	public static void main(String[] args) throws IOException	{
-		new RaportExcell("Marcin Kuciak");
+		new RaportExcell("Marcin Kuciak", 12, 2018);
 		//do testów, potem wywalić metodę
 	}
 }

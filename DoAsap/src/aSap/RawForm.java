@@ -22,6 +22,10 @@ public class RawForm {
 	public void addToContPane(JComponent c, String migCoords)	{
 		frame.getContentPane().add(c, migCoords);
 	}
+	
+	public void closeThisFrame()	{
+		frame.setVisible(false);
+	}
 
 
 }

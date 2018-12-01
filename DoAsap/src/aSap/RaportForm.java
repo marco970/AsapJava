@@ -3,9 +3,11 @@ package aSap;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -85,9 +87,11 @@ public class RaportForm extends RawForm implements ActionListener {
 		
 		comboBoxMonth = new JComboBox(monthArr);
 		panel.add(comboBoxMonth, "cell 0 3,growx");
+		//comboBoxMonth.addActionListener(this);
 		
 		comboBoxYear = new JComboBox(yearList.toArray());
 		panel.add(comboBoxYear, "cell 2 3,growx");
+		//comboBoxYear.addActionListener(this);
 		
 		
 		// TODO Auto-generated constructor stub
@@ -105,9 +109,25 @@ public class RaportForm extends RawForm implements ActionListener {
 		});
 	}
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-
+	public void actionPerformed(ActionEvent e) {
+		Object command= e.getActionCommand();
+		if(command.equals("Anuluj"))	{
+			closeThisFrame();
+		}
+		if(command.equals("Generuj raport"))	{
+			ArrayList<String> monthsList = new ArrayList<String>(Arrays.asList(months));
+			String a = comboBoxYear.getSelectedItem().toString();
+			int y = Integer.parseInt(a);
+			try {
+				new RaportExcell("Marcin Kuciak", monthsList.indexOf(comboBoxMonth.getSelectedItem())+1, y);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			closeThisFrame();
+			System.out.println((monthsList.indexOf(comboBoxMonth.getSelectedItem())+1)+" "+comboBoxYear.getSelectedItem());
+			//System.out.println(comboBox.getSelectedIndex());
+		}
 
 
 	}
