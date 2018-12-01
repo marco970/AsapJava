@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -39,32 +40,37 @@ public class RaportForm extends RawForm implements ActionListener {
 			"listopad",
 			"grudzień"};
 	private String[] monthArr = new String[12];
+	private ArrayList<String> yearList = new ArrayList<String>();
 
 	public RaportForm(String title, String messageLabel) {
 		super(title, messageLabel);
 		
-		//data
-		//LocalTime lc = LocalTime.now();
+		//data - miesiąc
 		Calendar cal = Calendar.getInstance();
 		
-		//String month = new SimpleDateFormat("MMMMMMMMMMM").format(cal.getTime());
-		
 		int m = cal.get(Calendar.MONTH);
-		//System.out.println(cal.get(Calendar.MONTH));
 		int l = m;
 		for (int i = m; i<=m+11; i++)	{
 			if (i<=11) l=i;
 			else l=i-12;
 			monthArr[i-m] =  months[l];
 		}
-		
+		//data - rok
+		int n = cal.get(Calendar.YEAR);
 
-		btnSave.addActionListener(this);
 		
+		for (int i = 0; i <= n-2018+2; i++)	{
+			yearList.add((n-i)+"");
+		}
+		String[] yearArr = new String[yearList.size()];
+		//yearArr = (String[]) yearList.toArray();
+		//buttons
+		btnSave.addActionListener(this);	
 		btnCancel.addActionListener(this);
+		
 		addToContPane(btnCancel, "cell 0 2");
 		addToContPane(btnSave, "cell 0 2");
-
+		//zawartość - specjalizacja
 		JPanel panel = new JPanel();
 		addToContPane(panel, "cell 0 1,grow");
 		panel.setLayout(new MigLayout("", "[grow][][grow]", "[][][][]"));
@@ -80,7 +86,7 @@ public class RaportForm extends RawForm implements ActionListener {
 		comboBoxMonth = new JComboBox(monthArr);
 		panel.add(comboBoxMonth, "cell 0 3,growx");
 		
-		comboBoxYear = new JComboBox();
+		comboBoxYear = new JComboBox(yearList.toArray());
 		panel.add(comboBoxYear, "cell 2 3,growx");
 		
 		
