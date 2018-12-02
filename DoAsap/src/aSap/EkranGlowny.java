@@ -200,7 +200,7 @@ public class EkranGlowny implements ActionListener {
 		}
 		if (u.equals(start[2])){
 			//System.out.println(u+"--"+Arrays.asList(nazwaMies).indexOf(u)+"--"+q.toString());
-			new RaportForm();
+			new RaportForm(data);
 			
 		}
 		if (u.equals(sort[1]))	{

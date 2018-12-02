@@ -27,15 +27,17 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class RaportExcell {
 	int year;
 	int month;
+	String[] kolumns = 	{
+			"C", "E", "G", "I", "K", "M", "O", "Q",	"S", 
+			"U", "W", "Y", "AA", "AC",	"AE", "AG", "AI",	
+			"AK","AM", "AO", "AQ", "AS", "AU", "AW", "AY", 
+			"BA", "BC", "BE", "BG", "BI", "BK"
+			};
+	DataExtractor de;
 	
-	public RaportExcell(String kupiec, int monthP, int yearP) throws IOException	{
+	public RaportExcell(MainTableModel model, String kupiec, int monthP, int yearP) throws IOException	{
 		
-		String[] kolumns = 	{
-							"C", "E", "G", "I", "K", "M", "O", "Q",	"S", 
-							"U", "W", "Y", "AA", "AC",	"AE", "AG", "AI",	
-							"AK","AM", "AO", "AQ", "AS", "AU", "AW", "AY", 
-							"BA", "BC", "BE", "BG", "BI", "BK"
-							};
+		de = new DataExtractor(model, monthP, yearP);
 			
 		
 		year = yearP;
@@ -67,7 +69,7 @@ public class RaportExcell {
 		//wygenerowanie wierszy i komórek
 		//i - wiersze
 		//j - kolumny
-		System.out.println(dniMies+"-"+(dniMies*2-1+3)+"-"+rowNumber);
+		//System.out.println(dniMies+"-"+(dniMies*2-1+3)+"-"+rowNumber);
 		for (int i=0; i<=rowNumber-1; i++)	{
 			rowArr[i]=sheet.createRow(i);
 			//rowArr[i].setHeightInPoints(100);
@@ -250,13 +252,15 @@ public class RaportExcell {
 				rowArr[7].setHeightInPoints(25);
 				cellArr[7][1].setCellValue("SUMA");
 				cellArr[7][1].setCellStyle(cs3);
+				
+				
 
 				
 				workbook.write(new FileOutputStream(month+"_"+year+"_"+"_Raport.xls"));
 				workbook.close();	//ostatni wiersz
 		}
 	public static void main(String[] args) throws IOException	{
-		new RaportExcell("Marcin Kuciak", 12, 2018);
+		new RaportExcell(new MainTableModel(), "Marcin Kuciak", 11, 2018);
 		//do testów, potem wywalić metodę
 	}
 }

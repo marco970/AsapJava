@@ -43,10 +43,12 @@ public class RaportForm extends RawForm implements ActionListener {
 			"grudzień"};
 	private String[] monthArr = new String[12];
 	private ArrayList<String> yearList = new ArrayList<String>();
+	private MainTableModel model;
 
-	public RaportForm() {
+	public RaportForm(MainTableModel mod) {
 		super("Generowanie Raportu", "powitanie");
 		
+		model = mod;
 		//data - miesiąc
 		Calendar cal = Calendar.getInstance();
 		
@@ -96,18 +98,7 @@ public class RaportForm extends RawForm implements ActionListener {
 		
 		// TODO Auto-generated constructor stub
 	}
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RaportForm rForm = new RaportForm();
-					//rFrame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object command= e.getActionCommand();
@@ -119,7 +110,7 @@ public class RaportForm extends RawForm implements ActionListener {
 			String a = comboBoxYear.getSelectedItem().toString();
 			int y = Integer.parseInt(a);
 			try {
-				new RaportExcell("Marcin Kuciak", monthsList.indexOf(comboBoxMonth.getSelectedItem())+1, y);
+				new RaportExcell(model , "Marcin Kuciak", monthsList.indexOf(comboBoxMonth.getSelectedItem())+1, y);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
