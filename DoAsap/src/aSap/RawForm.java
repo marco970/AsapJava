@@ -24,7 +24,7 @@ public class RawForm {
 	}
 	
 	public void closeThisFrame()	{
-		frame.setVisible(false);
+		frame.dispose();
 	}
 
 

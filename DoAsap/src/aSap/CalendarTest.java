@@ -49,21 +49,4 @@ public class CalendarTest {
 		  date = dayNo+"/"+(mies+1)+"/"+rok;
 		  return date;
 	  }
-	  
-	  
-	  
-	  
-	  
-	  
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//CalendarTest ct = new CalendarTest(2018, 2);
-		//for (int i=1; i<=ct.getDayNo(2);i++)	{
-		//	System.out.print(ct.getDate(i));
-		//	System.out.println(" --------- "+ct.getDayName(i));
-		}
-		//System.out.println(ct.getDate(1));
-	
-
 }

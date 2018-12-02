@@ -44,8 +44,8 @@ public class RaportForm extends RawForm implements ActionListener {
 	private String[] monthArr = new String[12];
 	private ArrayList<String> yearList = new ArrayList<String>();
 
-	public RaportForm(String title, String messageLabel) {
-		super(title, messageLabel);
+	public RaportForm() {
+		super("Generowanie Raportu", "powitanie");
 		
 		//data - miesiąc
 		Calendar cal = Calendar.getInstance();
@@ -100,7 +100,7 @@ public class RaportForm extends RawForm implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RaportForm rForm = new RaportForm("Generowanie Raportu", "powitanie");
+					RaportForm rForm = new RaportForm();
 					//rFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

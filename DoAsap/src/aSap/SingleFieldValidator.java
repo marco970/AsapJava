@@ -178,13 +178,6 @@ public class SingleFieldValidator {
 						else valOrg(false,"nieprawidłowy format numeru_4");
 					}
 				}
-				//System.out.println(fieldName+" "+spolka+" "+sndPart);
-				/*
-				if (fieldName.equals("WP")||fstPart.equals("DK"))	{
-					if (sndPart.equals(spolka))	valOrg(true,"");
-					else valOrg(false,"nieprawidłowy format numeru_5");
-				}
-				*/
 			}
 		}
 		//EoMetodyWalidacyjne	

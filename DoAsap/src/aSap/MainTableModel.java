@@ -98,7 +98,7 @@ public class MainTableModel extends AbstractTableModel {
 		return dane.length;
 	}
 
-	@Override
+	@Override	//===================
 	public Object getValueAt(int arg0, int arg1) {
 		if (arg0<=getRowCount() && arg1<=getColumnCount()) return dane[arg0][arg1];
 		else return "";

@@ -252,7 +252,7 @@ public class RaportExcell {
 				cellArr[7][1].setCellStyle(cs3);
 
 				
-				workbook.write(new FileOutputStream(month+"_Raport.xls"));
+				workbook.write(new FileOutputStream(month+"_"+year+"_"+"_Raport.xls"));
 				workbook.close();	//ostatni wiersz
 		}
 	public static void main(String[] args) throws IOException	{

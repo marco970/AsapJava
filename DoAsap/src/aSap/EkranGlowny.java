@@ -101,9 +101,6 @@ public class EkranGlowny implements ActionListener {
 		eg.add(scroll);
 		
 		menuBar = new JMenuBar();
-
-
-		
 		
 		/**
 		 * To poniżej to jest do podmenu, żeby wygenerować raport. 
@@ -111,38 +108,14 @@ public class EkranGlowny implements ActionListener {
 		 * metoda poowinna być bardziej uniwersalna, ta jest zrobiona pod konkretną pozycję
 		 * To powinno być poprawione w kolejnych wersjach.
 		 */
-		for(int i =0; i<=months.length-1; i++)	{
-			months[i] = mi(nazwaMies[i]);
-			/*
-			 * do tego dodać 
-			 *  - bierzący miesiąc
-			 *  - skrócić listę do 3 poprzednich miesięcy
-			 *  - do tych miesięcy dodać rok
-			 *  - zrobić okienko do inny okres
-			 * 
-			 */
-		}
-		
-		raport = new JMenu(start[2]);
-		doMassAddMenu(raport, months);
-		
-		
-		
 		
 		doMassAddMenu(menuBar, start);
 		doMassAddMenu(menuBar, sort);
 		doMassAddMenu(menuBar, toDo);
 		doMassAddMenu(menuBar, notatki);
 		
-		
 		popupMenu = new JPopupMenu();
 		doMassAddMenu(popupMenu, popupStr);
-		//JMenuItem edit = new JMenuItem("Edycja");
-		//JMenuItem close = new JMenuItem("Zakoncz");
-		//popupMenu.add(edit);
-		//edit.addActionListener(this);
-		//close.addActionListener(this);
-		//popupMenu.add(close);
 
 		eg.setJMenuBar(menuBar); // f - oznacza obiekt typu JFrame
 		lista.setComponentPopupMenu(popupMenu);
@@ -167,14 +140,10 @@ public class EkranGlowny implements ActionListener {
 		JMenu menu = new JMenu(args[0]);
 		mb.add(menu);
 		for (int i =1; i<=args.length-1; i++)	{
-			if (args[0].equals("Start")&&i==2)	{
-				menu.add(raport);
-				
-			}
-			else	{
+
 				JMenuItem menuItem = mi(args[i]);
 				menu.add(menuItem);
-			}
+			
 			
 			
 		}
@@ -229,8 +198,9 @@ public class EkranGlowny implements ActionListener {
 			//new OpForm1("Dodaj nowe postępowanie", data.getRowCount()+1, data, errMS);
 			new NewForm(data.getRowCount()+1, data);
 		}
-		if (u.equals("styczeń")){
-			System.out.println(u+"--"+Arrays.asList(nazwaMies).indexOf(u)+"--"+q.toString());
+		if (u.equals(start[2])){
+			//System.out.println(u+"--"+Arrays.asList(nazwaMies).indexOf(u)+"--"+q.toString());
+			new RaportForm();
 			
 		}
 		if (u.equals(sort[1]))	{
