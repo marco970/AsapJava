@@ -24,7 +24,7 @@ public class CalendarTest {
 	  public CalendarTest(int rok, int month) {
 	     this.rok = rok;
 	     this.mies = month - 1;
-	     System.out.println(mies+" "+nazwaMies[mies]);
+	     //System.out.println(mies+" "+nazwaMies[mies]);
 	     //kalend.set(rok, mies);
 	     /*
 	     for (int i = 1; i<=ldni[mies]; i++)	{
