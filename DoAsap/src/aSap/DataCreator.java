@@ -5,6 +5,7 @@ public class DataCreator {
 	//String nazwa;
 	int dniMiesNo;
 	String[] a;
+	Integer[] b;
 	
 	
 	public DataCreator(int dniMiesNo) {
@@ -14,13 +15,16 @@ public class DataCreator {
 		//this.nazwa = nazwa;
 		this.dniMiesNo = dniMiesNo;
 		a = new String[dniMiesNo+1];
+		b = new Integer[dniMiesNo+1];
 		for (int i = 1; i <= dniMiesNo; i++)	{
 			a[i] = "";
+			b[i] = 0;
 		}
 	
 	}
 	public void addDane(int adr, String content)	{
-		a[adr] = a[adr] +" "+content;
+		a[adr] = (a[adr] +" "+content).trim();
+		b[adr] = b[adr] + 1;
 	}
 	public void showAll()	{
 		for (int i = 1; i<=dniMiesNo; i++)	{
@@ -29,6 +33,9 @@ public class DataCreator {
 	}
 	public String[] getAll()	{
 		return a;		
+	}
+	public Integer[] getHours()	{
+		return b;
 	}
 	
 	

@@ -21,12 +21,15 @@ public class DataExtractor2 {
 	
 	//CalendarTest ct; 
 	int dniMies;
+	private Integer[] ZZHours;
 	 
 	
 	public DataExtractor2(MainTableModel model, int month, int year, CalendarTest ct)	{
 		ZZ = new ArrayList<String>();
 		PZ = new ArrayList<String>();
 		DK = new ArrayList<String>();
+		
+		ZZHours = new Integer[dniMies];
 		
 		//ZZrow = new ArrayList<String>();
 		PZrow = new ArrayList<String>();
@@ -55,11 +58,14 @@ public class DataExtractor2 {
 		//ZZdc.showAll();
 		
 		ZZrow = ZZdc.getAll();
-		int i = 0;
+		ZZHours = ZZdc.getHours();
+		//int i = 0;
+		/*
 		for (String el: ZZrow)	{
 			System.out.println(i+" "+el);
 			i++;
 		}
+		*/
 		
 		
 	}
@@ -113,6 +119,9 @@ public class DataExtractor2 {
 	public String[] getZZrow()	{
 		return ZZrow;
 		
+	}
+	public Integer[] getZZHours()	{
+		return ZZHours;
 	}
 
 }

@@ -190,7 +190,7 @@ public class RaportExcell {
 				cellArr[7][dniMies*2+2].setCellType(CellType.FORMULA);
 				cellArr[7][dniMies*2+2].setCellFormula(formulaSum);
 				cellArr[7][dniMies*2+2].setCellStyle(cs2);
-				System.out.println(formulaSum);
+				//System.out.println(formulaSum);
 				
 				//generowanie pierwszych 2 kolumn
 					
@@ -255,23 +255,27 @@ public class RaportExcell {
 				cellArr[7][1].setCellValue("SUMA");
 				cellArr[7][1].setCellStyle(cs3);
 				
-				
+				//generowanie zawartości
+				//ZZ
+			for (int i = 0; i<=dniMies*2-1; i=i+2)	{
+				String[] zz = new String[de.ZZrow.length];
+				zz = de.ZZrow;
+				Integer[] zzHours = new Integer[de.ZZrow.length];
+				zzHours = de.getZZHours();
+				System.out.println(zzHours[i/2]+" "+ i/2+" "+(i+1));
+				cellArr[3][i+1].setCellValue(zz[i/2]);
+				cellArr[3][i+1].setCellStyle(cs1);
+				cellArr[3][i].setCellValue(zzHours[i/2]);
+				cellArr[3][i].setCellStyle(cs1);
+			}
+			//cellArr[3][3].setCellValue("abc");
 
 				
 				workbook.write(new FileOutputStream(month+"_"+year+"_"+"_Raport.xls"));
 				workbook.close();	//ostatni wiersz
 				
 				
-				//generowanie zawartości
-					//ZZ
-				for (int i = 0; i<=dniMies*2-1; i=i+2)	{
-					String[] zz = new String[de.ZZrow.length];
-					zz = de.ZZrow;
-					System.out.println(zz[i/2]+" "+ i/2+" "+(i+3));
-					cellArr[3][i+3].setCellValue("abc");
-					cellArr[3][i+3].setCellStyle(cs1);
-					
-				}
+
 				
 				
 				
