@@ -1,12 +1,13 @@
 package aSap;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DataExtractor2 {
 	ArrayList<String> ZZ; //0, 10
 	ArrayList<String> PZ; //1, 11
 	ArrayList<String> DK; //3, 13
-	ArrayList<String> ZZrow; //0, 10
+	String[] ZZrow; //0, 10
 	ArrayList<String> PZrow; //1, 11
 	ArrayList<String> DKrow; //3, 13
 	ArrayList<Integer> ZZday;
@@ -18,16 +19,16 @@ public class DataExtractor2 {
 	MainTableModel mod;
 	int rowCount;
 	
-	CalendarTest ct; 
+	//CalendarTest ct; 
 	int dniMies;
 	 
 	
-	public DataExtractor2(MainTableModel model, int month, int year)	{
+	public DataExtractor2(MainTableModel model, int month, int year, CalendarTest ct)	{
 		ZZ = new ArrayList<String>();
 		PZ = new ArrayList<String>();
 		DK = new ArrayList<String>();
 		
-		ZZrow = new ArrayList<String>();
+		//ZZrow = new ArrayList<String>();
 		PZrow = new ArrayList<String>();
 		DKrow = new ArrayList<String>();
 		
@@ -43,50 +44,24 @@ public class DataExtractor2 {
 		//extractData(1);
 		//extractData(3);
 		
-		ct = new CalendarTest(year, month);
+		
 		dniMies = ct.getDayNo(month);
 		
-		for (int i = 0; i<=dniMies-1; i++)	{
-			ZZrow.add(i, "");
-		}
-		for (int el: ZZday)	{
-			for (int i = 0; i<=dniMies-1; i++)	{
-				if (el==i)	ZZrow.add(i, ZZrow.get(i)+ZZ.get(ZZday.indexOf(el)));
-			}
-		}
+		DataCreator ZZdc = new DataCreator(dniMies);
 		
+		for (int i = 0; i<=ZZday.size()-1; i++)	{
+			ZZdc.addDane(ZZday.get(i), ZZ.get(i));
+		}
+		//ZZdc.showAll();
 		
+		ZZrow = ZZdc.getAll();
+		int i = 0;
 		for (String el: ZZrow)	{
-			System.out.println(el);
+			System.out.println(i+" "+el);
+			i++;
 		}
 		
 		
-		/*
-		for (String el: ZZ)	{
-			System.out.println(el);
-		}
-		for (int el: ZZday)	{
-			System.out.println(el);
-		}
-		
-		for (String el: PZ)	{
-			System.out.println(el);
-		}
-		for (String el: DK)	{
-			System.out.println(el);
-		}
-		for (int el: ZZday)	{
-			System.out.println(el);
-		}
-		for (int el: PZday)	{
-			System.out.println(el);
-		}
-		for (int el: DKday)	{
-			System.out.println(el);
-		}
-		*/
-		//int j = model.getRowCount();
-
 	}
 
 	public void extractData(int position)	{
@@ -109,7 +84,7 @@ public class DataExtractor2 {
 							DK.add((String) mod.getValueAt(i, position));
 							DKday.add(Integer.parseInt(a.substring(0, 2)));
 						}
-						System.out.println((String) mod.getValueAt(i, position)+"*"+a+" "+i);	
+						//System.out.println((String) mod.getValueAt(i, position)+"*"+a+" "+i);	
 					}
 				}
 			}					
@@ -118,7 +93,8 @@ public class DataExtractor2 {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new DataExtractor2(new MainTableModel(), 11, 2018);
+		CalendarTest ct = new CalendarTest(2018, 11);
+		new DataExtractor2(new MainTableModel(), 11, 2018, ct);
 
 	}
 	public ArrayList<String> getIDs(String name)	{
@@ -132,6 +108,11 @@ public class DataExtractor2 {
 		else if ("PZday".equals(name)) return PZday;
 		else if ("DKday".equals(name)) return DKday;
 		return null;
+	}
+	
+	public String[] getZZrow()	{
+		return ZZrow;
+		
 	}
 
 }

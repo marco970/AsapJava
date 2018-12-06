@@ -25,19 +25,19 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class RaportExcell {
-	int year;
-	int month;
-	String[] kolumns = 	{
+	private int year;
+	private int month;
+	private String[] kolumns = 	{
 			"C", "E", "G", "I", "K", "M", "O", "Q",	"S", 
 			"U", "W", "Y", "AA", "AC",	"AE", "AG", "AI",	
 			"AK","AM", "AO", "AQ", "AS", "AU", "AW", "AY", 
 			"BA", "BC", "BE", "BG", "BI", "BK"
 			};
-	DataExtractor de;
+	private DataExtractor2 de;
 	
 	public RaportExcell(MainTableModel model, String kupiec, int monthP, int yearP) throws IOException	{
 		
-		de = new DataExtractor(model, monthP, yearP);
+		
 			
 		
 		year = yearP;
@@ -45,6 +45,8 @@ public class RaportExcell {
 		int rowNumber = 9;
 		CalendarTest ct = new CalendarTest(year, month);
 		int dniMies = ct.getDayNo(month);
+		
+		de = new DataExtractor2(model, monthP, yearP, ct);
 
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet(kupiec);
@@ -258,6 +260,21 @@ public class RaportExcell {
 				
 				workbook.write(new FileOutputStream(month+"_"+year+"_"+"_Raport.xls"));
 				workbook.close();	//ostatni wiersz
+				
+				
+				//generowanie zawartości
+					//ZZ
+				for (int i = 0; i<=dniMies*2-1; i=i+2)	{
+					String[] zz = new String[de.ZZrow.length];
+					zz = de.ZZrow;
+					System.out.println(zz[i/2]+" "+ i/2+" "+(i+3));
+					cellArr[3][i+3].setCellValue("abc");
+					cellArr[3][i+3].setCellStyle(cs1);
+					
+				}
+				
+				
+				
 		}
 	public static void main(String[] args) throws IOException	{
 		new RaportExcell(new MainTableModel(), "Marcin Kuciak", 11, 2018);
