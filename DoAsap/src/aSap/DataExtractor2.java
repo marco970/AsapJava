@@ -22,7 +22,7 @@ public class DataExtractor2 {
 	int dniMies;
 	 
 	
-	public DataExtractor(MainTableModel model, int month, int year)	{
+	public DataExtractor2(MainTableModel model, int month, int year)	{
 		ZZ = new ArrayList<String>();
 		PZ = new ArrayList<String>();
 		DK = new ArrayList<String>();
@@ -40,8 +40,8 @@ public class DataExtractor2 {
 		mod = model;
 		rowCount = model.getRowCount();
 		extractData(0);
-		extractData(1);
-		extractData(3);
+		//extractData(1);
+		//extractData(3);
 		
 		ct = new CalendarTest(year, month);
 		dniMies = ct.getDayNo(month);
@@ -118,7 +118,7 @@ public class DataExtractor2 {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new DataExtractor(new MainTableModel(), 11, 2018);
+		new DataExtractor2(new MainTableModel(), 11, 2018);
 
 	}
 	public ArrayList<String> getIDs(String name)	{
