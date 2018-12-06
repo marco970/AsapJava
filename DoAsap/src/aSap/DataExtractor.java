@@ -41,26 +41,44 @@ public class DataExtractor {
 		mod = model;
 		rowCount = model.getRowCount();
 		extractData(0);
-		extractData(1);
-		extractData(3);
+		//extractData(1);
+		//extractData(3);
 		
 		ct = new CalendarTest(year, month);
 		dniMies = ct.getDayNo(month);
 		
-		for (int i = 0; i<=dniMies-1; i++)	{
-			ZZrow.add(i, "");
-		}
-		for (int el: ZZday)	{
-			for (int i = 0; i<=dniMies-1; i++)	{
-				if (el==i)	ZZrow.add(i, ZZrow.get(i)+ZZ.get(ZZday.indexOf(el)));
+		int k =0;
+		//int l = 0;
+		String u = "";
+		String w = "";
+		ArrayList<String> c = new ArrayList<String>();
+		c.add(0, ZZ.get(0));
+		for (int i=1; i<=ZZday.size()-1;i++)	{
+			
+			if (ZZday.get(i-1)==ZZday.get(i)) {
+				
+				//c.add(k, c.get(k)+" "+ZZ.get(i));
+				//l++;
+				u = ZZ.get(i);
+				w = w +" "+ u;
 			}
+			else {
+				c.add(k, w);
+				k++;
+				u = "";
+				w = "";
+				w = ZZ.get(i);
+				//c.add(k, ZZ.get(i));
+				c.add(k, w);
+			}
+			System.out.println(i+" "+k+" "+ZZ.get(i));
+
+			
+			
 		}
-		
-		
-		for (String el: ZZrow)	{
-			System.out.println(el);
+		for (String el: c)	{
+			System.out.println(c.size()+" "+c.indexOf(el)+" "+el);
 		}
-		
 		
 		/*
 		for (String el: ZZ)	{
