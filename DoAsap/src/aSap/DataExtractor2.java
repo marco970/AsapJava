@@ -53,9 +53,14 @@ public class DataExtractor2 {
 		createData(PZdc, PZ, PZday);
 		createData(DKdc, DK, DKday);
 
+		/*
 		ZZdc.showAll();
 		PZdc.showAll();
 		DKdc.showAll();
+		
+		*/
+		
+		
 		
 		ZZrow = ZZdc.getAll();
 		ZZHours = ZZdc.getHours();
@@ -65,6 +70,7 @@ public class DataExtractor2 {
 
 		DKrow = DKdc.getAll();
 		DKHours = DKdc.getHours();
+
 
 	}
 	
