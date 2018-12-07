@@ -20,6 +20,7 @@ public class DataCreator {
 			a[i] = "";
 			b[i] = 0;
 		}
+		//showAll();
 	
 	}
 	public void addDane(int adr, String content)	{
@@ -28,7 +29,7 @@ public class DataCreator {
 	}
 	public void showAll()	{
 		for (int i = 1; i<=dniMiesNo; i++)	{
-			System.out.println(i+" "+a[i]);
+			System.out.println(i+" "+b[i]+" "+a[i]);
 		}
 	}
 	public String[] getAll()	{

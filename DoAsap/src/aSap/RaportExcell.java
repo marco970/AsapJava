@@ -256,19 +256,36 @@ public class RaportExcell {
 				cellArr[7][1].setCellStyle(cs3);
 				
 				//generowanie zawartości
-				//ZZ
-			for (int i = 0; i<=dniMies*2-1; i=i+2)	{
-				String[] zz = new String[de.ZZrow.length];
-				zz = de.ZZrow;
-				Integer[] zzHours = new Integer[de.ZZrow.length];
-				zzHours = de.getZZHours();
-				System.out.println(zzHours[i/2]+" "+ i/2+" "+(i+1));
+				
+			for (int i = 2; i<=dniMies*2-1; i=i+2)	{
+				String[] zz = new String[de.getExRow("ZZ").length];
+				String[] pz = new String[de.getExRow("PZ").length];
+				String[] dk = new String[de.getExRow("DK").length];
+				zz = de.getExRow("ZZ");
+				pz = de.getExRow("PZ");
+				dk = de.getExRow("DK");
+				Integer[] zzHours = new Integer[de.getExHours("ZZ").length];
+				Integer[] pzHours = new Integer[de.getExHours("PZ").length];
+				Integer[] dkHours = new Integer[de.getExHours("DK").length];
+				zzHours = de.getExHours("ZZ");
+				pzHours = de.getExHours("PZ");
+				dkHours = de.getExHours("DK");
+				
 				cellArr[3][i+1].setCellValue(zz[i/2]);
 				cellArr[3][i+1].setCellStyle(cs1);
 				cellArr[3][i].setCellValue(zzHours[i/2]);
 				cellArr[3][i].setCellStyle(cs1);
+				
+				cellArr[4][i+1].setCellValue(pz[i/2]);
+				cellArr[4][i+1].setCellStyle(cs1);
+				cellArr[4][i].setCellValue(pzHours[i/2]);
+				cellArr[4][i].setCellStyle(cs1);
+				
+				cellArr[5][i+1].setCellValue(dk[i/2]);
+				cellArr[5][i+1].setCellStyle(cs1);
+				cellArr[5][i].setCellValue(dkHours[i/2]);
+				cellArr[5][i].setCellStyle(cs1);
 			}
-			//cellArr[3][3].setCellValue("abc");
 
 				
 				workbook.write(new FileOutputStream(month+"_"+year+"_"+"_Raport.xls"));
