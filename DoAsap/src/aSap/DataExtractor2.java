@@ -96,13 +96,14 @@ public class DataExtractor2 {
 	}
 
 	public void extractData(int position)	{
-		for (int i=0; i<=rowCount-1; i++)	{
-			String a = (String) mod.getValueAt(i, position+10);
+		for (int i=0; i<=rowCount-1; i++)	{ 
+			String a = (String) mod.getValueAt(i, position+10); //to jest data 
 			
-			if (!(("").equals(a)||a==null))	{
+			if (!(("").equals(a)||a==null))	{ //czy data istnieje, jak nie, to skok do następnego wiersza
 				//System.out.println(a.substring(3, 5)+"  "+a.substring(6, 10));
 				if (a.length()>=10)	{
-					if (a.substring(3, 5).equals(monthStr)&&a.substring(6, 10).equals(yearStr)) {
+					if (a.substring(3, 5).equals(monthStr)&&a.substring(6, 10).equals(yearStr)) { //A) czy data spelnia warunek miesiąca i roku
+						if(true)	{//B0						//czy nazwa firmy - tu trzeba się zapytać
 						if (position == 0)	{
 							ZZ.add((String) mod.getValueAt(i, position));
 							ZZday.add(Integer.parseInt(a.substring(0, 2)));
@@ -115,17 +116,19 @@ public class DataExtractor2 {
 							DK.add((String) mod.getValueAt(i, position));
 							DKday.add(Integer.parseInt(a.substring(0, 2)));
 						}
-						//System.out.println((String) mod.getValueAt(i, position)+"*"+a+" "+i);	
-					}
+						System.out.println((String) mod.getValueAt(i, position)+"*"+a+" "+i);	
+						}//koniec B)
+						
+					}// koniec A)
 				}
 			}					
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) {		//przy czyszczeniu do wywalenia
 		// TODO Auto-generated method stub
-		CalendarTest ct = new CalendarTest(2018, 11);
-		new DataExtractor2(new MainTableModel(), 11, 2018, ct);
+		CalendarTest ct = new CalendarTest(2018, 2);
+		new DataExtractor2(new MainTableModel(), 2, 2018, ct);
 
 	}
 
