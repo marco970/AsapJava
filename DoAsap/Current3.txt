@@ -3,7 +3,7 @@ ZZ/CPO9990002;;;;open;aaa;Nokia;Przetarg;przetarg;PLK;04.11.2018 at 12:42:33;;;;
 ZZ/PLK9993332;;;;open;Jakieś anteny;Kathrein;Oferta z dn. 12.10.2018;z wolnej ręki;PLK;04.11.2018 at 12:49:03;;;;;
 ZZ/PLI2233445;;;;open;Zakup nowych ficzerów do ;;;;;;;;;;
 ZZ/CPO3334445;PZ/2223334455;;;open;TTT;aaa;ddd;z wolnej ręki;CPO;04.11.2018 at 16:52:52;13.11.2018 at 09:09:45;;;;
-ZZ/PLI3334445;;;;open;Se kupie platformę do zarządzania;;;;;;;;;;
+ZZ/PLI3334445;PZ/0000556677;;;open;Se kupie platformę do zarządzania;Delta;Platforma do zasilania;przetarg;;16.12.2018 at 09:59:46;17.12.2018 at 09:59:46;;;;
 ZZ/PLK9998882;PZ/3333334455;;;open;hej ju, ;Pink Floyd;;przetarg;PLK;19.10.2018 at 09:01:52;03.11.2018 at 15:07:26;;;19.10.2018 at 09:01:52;
 ZZ/CPO9990002;PZ/1112223333;;DK/PLK3334445;open;aaa;Nokia;Przetarg;przetarg;PLK;04.11.2018 at 12:42:33;07.11.2018 at 10:37:56;;07.11.2018 at 10:38:57;;
 ZZ/PLK9993332;PZ/3333334452;;DK/PLK9998888;open;Jakieś anteny;Kathrein;Oferta z dn. 12.10.2018;z wolnej ręki;PLK;04.11.2018 at 12:49:03;07.11.2018 at 09:10:35;;07.11.2018 at 09:10:35;;

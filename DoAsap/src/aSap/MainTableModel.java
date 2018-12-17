@@ -17,7 +17,7 @@ public class MainTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 	private static String[] nazwyKolumn = {"ZZ", "PZ", "WP", "DK", "Status", 
 			"Przemiot Zakupu", "Dostawca", "Nazwa", "Tryb postępowania", "Spółka", 
-			"dsZZ", "dsPZ", "dsWP", "dsDK", "dsStatus" };
+			"dsZZ", "dsPZ", "dsWP", "dsDK" };
 	/*
 	 * Walidacja
 	 */
@@ -29,7 +29,7 @@ public class MainTableModel extends AbstractTableModel {
 	
 	//private String current = "F:/aSapData/Current3.txt";
 	//private String current = "C:/Users/Lappo/git/AsapJava/aSapData/Current3.txt";
-	private String current = "Current3.txt";
+	private String current = "Current4.txt";
 	//private String current = "C:/Users/marcin.kuciak/Documents/workIT_projects/doAsap/aSapData/Current3.txt";
 	
 	private Object[][] dane = null;
