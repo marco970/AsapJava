@@ -300,7 +300,7 @@ public class OpForm2 implements ActionListener, FocusListener {
 		
 		boolean test = true;
 	    Date currentDate = new Date();
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy 'at' HH:mm:ss");
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 	    String dateString = dateFormat.format(currentDate);
 		Object[] savedRow = new Object[colCount];
 		String[] rowAll = new String[tfAll.length];

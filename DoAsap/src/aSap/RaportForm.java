@@ -29,18 +29,18 @@ public class RaportForm extends RawForm implements ActionListener {
 	private JComboBox comboBoxMonth;
 	private JComboBox comboBoxYear;
 	private String[] months =
-		{"styczeń",
-			"luty",
-			"marzec",
-			"kwiecień",
-			"maj",
-			"czerwiec",
-			"lipiec",
-			"sierpień",
-			"wrzesień",
-			"październik",
-			"listopad",
-			"grudzień"};
+				{"grudzień", 
+				"listopad",
+				"październik",
+				"wrzesień",
+				"sierpień",
+				"lipiec",
+				"czerwiec",
+				"maj",
+				"kwiecień",
+				"marzec",
+				"luty",
+				"styczeń"};
 	private String[] monthArr = new String[12];
 	private ArrayList<String> yearList = new ArrayList<String>();
 	private MainTableModel model;
@@ -52,8 +52,9 @@ public class RaportForm extends RawForm implements ActionListener {
 		//data - miesiąc
 		Calendar cal = Calendar.getInstance();
 		
-		int m = cal.get(Calendar.MONTH);
+		int m = cal.get(Calendar.MONTH)+1;
 		int l = m;
+
 		for (int i = m; i<=m+11; i++)	{
 			if (i<=11) l=i;
 			else l=i-12;
@@ -87,11 +88,11 @@ public class RaportForm extends RawForm implements ActionListener {
 		lblNewLabel_3 = new JLabel("zmień rok");
 		panel.add(lblNewLabel_3, "cell 2 2");
 		
-		comboBoxMonth = new JComboBox(monthArr);
+		comboBoxMonth = new JComboBox<String>(monthArr);
 		panel.add(comboBoxMonth, "cell 0 3,growx");
 		//comboBoxMonth.addActionListener(this);
 		
-		comboBoxYear = new JComboBox(yearList.toArray());
+		comboBoxYear = new JComboBox<Object>(yearList.toArray());
 		panel.add(comboBoxYear, "cell 2 3,growx");
 		//comboBoxYear.addActionListener(this);
 		
@@ -110,14 +111,12 @@ public class RaportForm extends RawForm implements ActionListener {
 			String a = comboBoxYear.getSelectedItem().toString();
 			int y = Integer.parseInt(a);
 			try {
-				new RaportExcell(model , "Marcin Kuciak", monthsList.indexOf(comboBoxMonth.getSelectedItem())+1, y);
+				new RaportExcell(model , "Marcin Kuciak", 12-monthsList.indexOf(comboBoxMonth.getSelectedItem()), y);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			closeThisFrame();
-			System.out.println((monthsList.indexOf(comboBoxMonth.getSelectedItem())+1)+" "+comboBoxYear.getSelectedItem());
-			//System.out.println(comboBox.getSelectedIndex());
+			System.out.println((12-monthsList.indexOf(comboBoxMonth.getSelectedItem()))+" "+comboBoxYear.getSelectedItem());
 		}
 
 

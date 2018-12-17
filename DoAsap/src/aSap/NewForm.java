@@ -207,7 +207,7 @@ public class NewForm implements  ActionListener, FocusListener {
 		if(command.equals("Zapisz"))	{
 			String[] savedRow = new String[model.getColumnCount()];
 		    Date currentDate = new Date();
-		    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy 'at' HH:mm:ss");
+		    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 		    String dateString = dateFormat.format(currentDate);
 		    //System.out.println(model.getColumnCount());
 			for (int i=0; i<=model.getColumnCount()-1; i++)	{

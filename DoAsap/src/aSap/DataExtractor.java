@@ -41,8 +41,8 @@ public class DataExtractor {
 		mod = model;
 		rowCount = model.getRowCount();
 		extractData(0);
-		//extractData(1);
-		//extractData(3);
+		extractData(1);
+		extractData(3);
 		
 		ct = new CalendarTest(year, month);
 		dniMies = ct.getDayNo(month);

@@ -1,5 +1,13 @@
 package aSap;
 
+/**
+ * 
+ * @author marcin.kuciak
+ * 
+ * To jest klasa do
+ *
+ */
+
 public class DataCreator {
 	
 	//String nazwa;
