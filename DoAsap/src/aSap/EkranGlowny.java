@@ -1,5 +1,6 @@
 package aSap;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
@@ -36,7 +37,7 @@ public class EkranGlowny implements ActionListener {
 
 	//do menu - string pierwszy nazwa menu, kolejne - nazwy MenuItemów
 	String[] start = {"Start", "Nowe postępowanie", "Raport miesięczny", "Exit"};
-	String[] sort = {"Sort","Nieaktywne", "Aktywne","ToDo","Status","Tryb"};
+	String[] sort = {"Sort","Nieaktywne", "Aktywne","Zawieszone", "Zakończone"};
 	String[] toDo = {"ToDo", "Lista", "Notatki"};
 	String[] notatki = {"Notatki","Nowa notatka","Edytuj"};
 	String[] popupStr = {"modyfikacja", "zakończ postępowanie", "zawieś postepowanie"};
@@ -66,38 +67,29 @@ public class EkranGlowny implements ActionListener {
 		eg = new JFrame("ASap - Lista Postępowań");
 		x=0;
 		y=0;
-		width = dane.getColumnCount()*110;
-		height=	dane.getRowCount()*5+150;	
+		width = dane.getColumnCount()*100;
+		height=	dane.getRowCount()*12+200;	
 		eg.setSize(width, height);
-		//JTextArea ta = new JTextArea(); //?? do czego to? wywalić
-		/*
-		 * trzeba stworzyć metodę, która zwróci w wyniku model ale bez wierszy "nieaktywnych" lub"aktywnych" 
-		 * default - przeglądamy aktywne, przęłączenie na nieaktywne w menu
-		 * mając otwartą listę musimy mieć możliwość zmiany statusu (popup menu)
-		 * W takiej sytuacji wiersz powinien znknąć z listy - metoda fire ale pewnie także trzeba będzie jakoś "odświerzyć" 
-		 * wyświetlanie aktywnych
-		 * inaczej stawiając problem, pytanie, gdzie zorobić wybieranie aktywnych rekordów do wyświetlania, żeby było to odświerzanie
-		 * gdzie są słuchacze metod fire? - spr w wykładzie.
-		 * 
-		 */
 		
 		lista = new JTable(dane);
-		lista.setAutoCreateRowSorter(true);
-		sorter = new TableRowSorter<MainTableModel>(dane);
-		
+		lista.setAutoCreateRowSorter(true);			//sortowanie najprościej
+		sorter = new TableRowSorter<MainTableModel>(dane);		
 		
 	    filter = new RowFilter<Object, Object>() {
 		      public boolean include(Entry entry) {
 		        String status = (String) entry.getValue(4);
-		        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
 		        return !("".equals(status) || status == null);
-		        //return true;
 		      }
 		    };
 
 		sorter.setRowFilter(filter);
 		lista.setRowSorter(sorter);
+		Dimension dim = new Dimension(width, height);
+		//dim.setSize(width, height);
+		lista.setPreferredSize(dim);
 		JScrollPane scroll = new JScrollPane(lista);
+
+		
 		eg.add(scroll);
 		
 		menuBar = new JMenuBar();
@@ -123,6 +115,7 @@ public class EkranGlowny implements ActionListener {
 
 		eg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		eg.setVisible(true);
+		//eg.pack();
 		//scroll.setVisible(true); - nie potrzeba
 		
 	}
@@ -190,7 +183,6 @@ public class EkranGlowny implements ActionListener {
 		//Object z = e.getSource();
 		//int selectedRow = lista.getSelectedRow();
 		if (u.equals(start[3]))	{
-			//eg.dispose();
 			System.exit(0);
 		}
 		ErrMessageShow errMS = new ErrMessageShow(data); 		//do wywalenia?
@@ -209,7 +201,7 @@ public class EkranGlowny implements ActionListener {
 			      public boolean include(Entry entry) {
 			        String status = (String) entry.getValue(4);
 			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
-			        return !("".equals(status) || status == null);
+			        return !("open".equals(status));
 			        //return true;
 			      }
 			    };
@@ -223,7 +215,35 @@ public class EkranGlowny implements ActionListener {
 			      public boolean include(Entry entry) {
 			        String status = (String) entry.getValue(4);
 			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
-			        return ("".equals(status) || status == null);
+			        return ("open".equals(status));
+			        //return true;
+			      }
+			    };
+				sorter.setRowFilter(filter);
+				lista.setRowSorter(sorter);
+
+		}
+		if (u.equals(sort[3]))	{
+			//System.out.println("sort teraz "+u);
+		    filter = new RowFilter<Object, Object>() {
+			      public boolean include(Entry entry) {
+			        String status = (String) entry.getValue(4);
+			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
+			        return ("on hold".equals(status));
+			        //return true;
+			      }
+			    };
+				sorter.setRowFilter(filter);
+				lista.setRowSorter(sorter);
+
+		}
+		if (u.equals(sort[4]))	{
+			//System.out.println("sort teraz "+u);
+		    filter = new RowFilter<Object, Object>() {
+			      public boolean include(Entry entry) {
+			        String status = (String) entry.getValue(4);
+			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
+			        return ("done".equals(status));
 			        //return true;
 			      }
 			    };

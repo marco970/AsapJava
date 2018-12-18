@@ -101,12 +101,15 @@ public class DataExtractor2 {
 		for (int i=0; i<=rowCount-1; i++)	{ 
 			String a = (String) mod.getValueAt(i, position+10); //to jest data 
 			String b = (String) mod.getValueAt(i, 9);
+			String cond1 = "PLK";
+			String cond2 = " ";
+			String cond3 = " ";
 			
 			if (!(("").equals(a)||a==null))	{ //czy data istnieje, jak nie, to skok do następnego wiersza
 				//System.out.println(a.substring(3, 5)+"  "+a.substring(6, 10));
 				if (a.length()>=10)	{
 					if (a.substring(3, 5).equals(monthStr)&&a.substring(6, 10).equals(yearStr)) { //A) czy data spelnia warunek miesiąca i roku
-						if(!("PLK".equals(b)||"".equals(b)))	{//B0						//czy nazwa firmy - tu trzeba się zapytać
+						if(!(cond1.equals(b)||cond2.equals(b)||cond3.equals(b)))	{//B0						//czy nazwa firmy - tu trzeba się zapytać
 							if (position == 0)	{
 								ZZ.add((String) mod.getValueAt(i, position));
 								ZZday.add(Integer.parseInt(a.substring(0, 2)));
