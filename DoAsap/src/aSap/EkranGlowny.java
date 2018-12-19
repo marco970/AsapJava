@@ -3,7 +3,12 @@ package aSap;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -18,6 +23,8 @@ import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
 import javax.swing.RowFilter.Entry;
 import javax.swing.RowSorter;
+import javax.swing.RowSorter.SortKey;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -61,6 +68,18 @@ public class EkranGlowny implements ActionListener {
 		    });
 	}
 	
+	public int compare(Object a, Object b) {		//metoda do testów, na koniec do wywalenia.
+		int n1, n2;
+		String aS = a.toString();
+		String bS = b.toString();
+		n1 = Integer.valueOf(aS.substring(0, 2))+30*Integer.valueOf(aS.substring(3, 5))+30*12*Integer.valueOf(aS.substring(6, 10));//+30*Integer.valueOf(aS.substring(3, 6))
+		n2 = Integer.valueOf(bS.substring(0, 2))+30*Integer.valueOf(bS.substring(3, 5))+30*12*Integer.valueOf(bS.substring(6, 10));
+		System.out.println(aS+" "+n1+" "+bS+" "+n2);
+		System.out.println(aS+" "+bS+"---"+aS.substring(6, 10));
+		System.out.println(n1+" "+n2);
+		return n1 - n2;
+	}
+	
 	public void createGui(String tytul)	{
 		MainTableModel dane = new MainTableModel();
 		data = dane;
@@ -72,8 +91,17 @@ public class EkranGlowny implements ActionListener {
 		eg.setSize(width, height);
 		
 		lista = new JTable(dane);
-		lista.setAutoCreateRowSorter(true);			//sortowanie najprościej
-		sorter = new TableRowSorter<MainTableModel>(dane);		
+		//sortowanie i filtrowanie
+		//lista.setAutoCreateRowSorter(true);			//sortowanie najprościej
+		sorter = new TableRowSorter<MainTableModel>(dane);
+		//compare(dane.getValueAt(12, 11), dane.getValueAt(5, 11));
+		sorter.setComparator(10, new Compare());
+		sorter.setComparator(11, new Compare());
+		sorter.setComparator(12, new Compare());
+		sorter.setComparator(13, new Compare());
+		lista.setRowSorter(sorter);
+		
+		
 		
 	    filter = new RowFilter<Object, Object>() {
 		      public boolean include(Entry entry) {
@@ -117,6 +145,31 @@ public class EkranGlowny implements ActionListener {
 		eg.setVisible(true);
 		//eg.pack();
 		//scroll.setVisible(true); - nie potrzeba
+		
+		/*
+		// Nasłuch kliknięć w kolumny
+		final JTextArea report = new JTextArea(20, 40);
+	    lista.getTableHeader().addMouseListener( 
+	        new MouseAdapter() {
+	          @Override
+	          public void mouseClicked(MouseEvent e) {
+	            JTableHeader head = (JTableHeader) e.getSource(); 
+	            int col = head.columnAtPoint(e.getPoint());
+	            report.append("Kliknięcie w kolumnę '" + lista.getColumnName(col) + 
+	                          "'\nDane posortowane wg:\n" );
+	            TableRowSorter tsorter = (TableRowSorter) lista.getRowSorter();
+	            List<SortKey> sortKeys =  tsorter.getSortKeys();
+	            for (SortKey key : sortKeys) {
+	              report.append("-- " +lista.getColumnName(key.getColumn()) + 
+	                            " w porządku " + key.getSortOrder()+'\n' );
+	            }
+
+	          }    
+	        }
+	    );
+	    eg.add(new JScrollPane(report));
+		*/
+		
 		
 	}
 	public void doMassAddMenu(JPopupMenu popup, String...args)	{

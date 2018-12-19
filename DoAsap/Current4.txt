@@ -12,8 +12,8 @@ ZZ/CPO4455667;;WP/PLI2222333;;open;Wędki karpiowe ;PolSpin;Wędki  na rybki;z w
 ZZ/PLK0003333;PZ/1111122222;WP/CPO4443333;;open;Śróbki i nakrętki;Nokia Akcesoria Oy;SuperPrzetarg;z wolnej ręki;PLK;09.11.2018 at 15:15:49;09.11.2018 at 15:16:39;09.11.2018 at 15:16:39;;
 ZZ/PLI1231234;PZ/0000999988;WP/PLI3334444;;open;Kloacki Lego;Nokia;Klocki;inne;PLI;09.11.2018 at 15:29:55;09.11.2018 at 15:48:03;09.11.2018 at 15:48:03;;
 ZZ/PLK2223334;;;;open;Anteny - aktualizacja cennika;Kathrein;AntenyKathrein201811;z wolnej ręki;PLK;21.11.2018 at 15:11:49;;;;
-ZZ/PLI0005841;PZ/0003335577;WP/PLI0006677;;open;Kijek i siekierka od Wójka;Wójek;Siekierka201812;z wolnej ręki;PLI;17.12.2018 at 10:11:52;17.12.2018;17.12.2018;;
-ZZ/CPO0005922;PZ/0004445555;;;open;Narzędzia do wymiany uszczekl na rurze kanalizacyjnej w kuchni;Tulex;Tools_Toolex201812;z wolnej ręki;CPO;17.12.2018 at 10:27:47;18.12.2018;;;
+ZZ/PLI0005841;PZ/0003335577;WP/PLI0006677;;open;Kijek i siekierka od Wójka;Wójek;Siekierka201812;z wolnej ręki;PLI;01.12.2018 at 10:11:52;17.12.2018;17.12.2018;;
+ZZ/CPO0005922;PZ/0004445555;;;open;Narzędzia do wymiany uszczekl na rurze kanalizacyjnej w kuchni;Tulex;Tools_Toolex201812;z wolnej ręki;CPO;17.12.2018 at 10:27:47;18.10.2018;;;
 ZZ/PLK0005922;;;;open;Platforma do zarządzania platformami;Ericsson;Platforma201812;inne;PLK;17.12.2018;;;;
 ZZ/PLI0005869;;;;open;Proszę o przeprowadzenie postepowania przetargowego na wyłonienie dostawcy sprzętu DWDM na potrzeby realizacji Alien Lambda.;;DWDM_2018;przetarg;PLI;18.12.2018;;;;
 ZZ/PLI0005885;;;;open;Okablowanie dla instalacji na Stadionie Narodowym;;OkablowanieNarodowy201812;przetarg;PLI;18.12.2018;;;;
