@@ -120,6 +120,7 @@ public class EkranGlowny implements ActionListener {
 		doMassAddMenu(menuBar, notatki);
 		
 		popupMenu = new JPopupMenu();
+		
 		doMassAddMenu(popupMenu, popupStr);
 
 		eg.setJMenuBar(menuBar); // f - oznacza obiekt typu JFrame
