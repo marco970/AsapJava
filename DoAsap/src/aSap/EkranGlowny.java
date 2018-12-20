@@ -3,42 +3,31 @@ package aSap;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
-import javax.swing.RowFilter.Entry;
-import javax.swing.RowSorter;
-import javax.swing.RowSorter.SortKey;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 	
 public class EkranGlowny implements ActionListener {
 	
 	private JFrame eg;
-	private int x, y, width, height;
+	private int width, height;
 	private String tytul;
 	private JMenuBar menuBar;
 	private MainTableModel data;
 	private JPopupMenu popupMenu;
 	private JTable lista;
-	private JMenuItem[] months = new JMenuItem[12];
 	JMenu raport=null;  
 	//private ErrMessage errMessage;
 
@@ -84,8 +73,6 @@ public class EkranGlowny implements ActionListener {
 		MainTableModel dane = new MainTableModel();
 		data = dane;
 		eg = new JFrame("ASap - Lista Postępowań");
-		x=0;
-		y=0;
 		width = dane.getColumnCount()*100;
 		height=	dane.getRowCount()*12+200;	
 		eg.setSize(width, height);
@@ -100,11 +87,9 @@ public class EkranGlowny implements ActionListener {
 		sorter.setComparator(12, new Compare());
 		sorter.setComparator(13, new Compare());
 		lista.setRowSorter(sorter);
-		
-		
-		
+
 	    filter = new RowFilter<Object, Object>() {
-		      public boolean include(Entry entry) {
+		      public boolean include(Entry<?, ?> entry) {
 		        String status = (String) entry.getValue(4);
 		        return !("".equals(status) || status == null);
 		      }
@@ -143,34 +128,13 @@ public class EkranGlowny implements ActionListener {
 
 		eg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		eg.setVisible(true);
+		
+		
+		
+		
 		//eg.pack();
 		//scroll.setVisible(true); - nie potrzeba
-		
-		/*
-		// Nasłuch kliknięć w kolumny
-		final JTextArea report = new JTextArea(20, 40);
-	    lista.getTableHeader().addMouseListener( 
-	        new MouseAdapter() {
-	          @Override
-	          public void mouseClicked(MouseEvent e) {
-	            JTableHeader head = (JTableHeader) e.getSource(); 
-	            int col = head.columnAtPoint(e.getPoint());
-	            report.append("Kliknięcie w kolumnę '" + lista.getColumnName(col) + 
-	                          "'\nDane posortowane wg:\n" );
-	            TableRowSorter tsorter = (TableRowSorter) lista.getRowSorter();
-	            List<SortKey> sortKeys =  tsorter.getSortKeys();
-	            for (SortKey key : sortKeys) {
-	              report.append("-- " +lista.getColumnName(key.getColumn()) + 
-	                            " w porządku " + key.getSortOrder()+'\n' );
-	            }
 
-	          }    
-	        }
-	    );
-	    eg.add(new JScrollPane(report));
-		*/
-		
-		
 	}
 	public void doMassAddMenu(JPopupMenu popup, String...args)	{
 		//JMenu menu = new JMenu(args[0]);
@@ -227,20 +191,12 @@ public class EkranGlowny implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		String u = e.getActionCommand();
-		Object q = (Object) e.getSource();
-		//Object w = (Object) e.
-		//OknoForm okFo = null;		//znaczy oknoForm. 
-		//int selectedRow = 0;
-		//int realSelectedRow = 0;
 
-		//Object z = e.getSource();
-		//int selectedRow = lista.getSelectedRow();
 		if (u.equals(start[3]))	{
 			System.exit(0);
 		}
 		ErrMessageShow errMS = new ErrMessageShow(data); 		//do wywalenia?
 		if (u.equals(start[1]))	{
-			//new OpForm1("Dodaj nowe postępowanie", data.getRowCount()+1, data, errMS);
 			new NewForm(data.getRowCount()+1, data);
 		}
 		if (u.equals(start[2])){
@@ -251,7 +207,7 @@ public class EkranGlowny implements ActionListener {
 		if (u.equals(sort[1]))	{
 			//System.out.println("sort teraz "+u);
 		    filter = new RowFilter<Object, Object>() {
-			      public boolean include(Entry entry) {
+			      public boolean include(Entry<?, ?> entry) {
 			        String status = (String) entry.getValue(4);
 			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
 			        return !("open".equals(status));
@@ -265,7 +221,7 @@ public class EkranGlowny implements ActionListener {
 		if (u.equals(sort[2]))	{
 			//System.out.println("sort teraz "+u);
 		    filter = new RowFilter<Object, Object>() {
-			      public boolean include(Entry entry) {
+			      public boolean include(Entry<?, ?> entry) {
 			        String status = (String) entry.getValue(4);
 			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
 			        return ("open".equals(status));
@@ -279,7 +235,7 @@ public class EkranGlowny implements ActionListener {
 		if (u.equals(sort[3]))	{
 			//System.out.println("sort teraz "+u);
 		    filter = new RowFilter<Object, Object>() {
-			      public boolean include(Entry entry) {
+			      public boolean include(Entry<?, ?> entry) {
 			        String status = (String) entry.getValue(4);
 			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
 			        return ("on hold".equals(status));
@@ -293,7 +249,7 @@ public class EkranGlowny implements ActionListener {
 		if (u.equals(sort[4]))	{
 			//System.out.println("sort teraz "+u);
 		    filter = new RowFilter<Object, Object>() {
-			      public boolean include(Entry entry) {
+			      public boolean include(Entry<?, ?> entry) {
 			        String status = (String) entry.getValue(4);
 			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
 			        return ("done".equals(status));
@@ -314,6 +270,26 @@ public class EkranGlowny implements ActionListener {
 		}
 		//okFo.addChangeListener(this); //czy to w ogóle jest potrzebne?
 		if (u.equals(popupStr[1]))	{
+			//spr czy jest WP?
+			int selectedRow = lista.getSelectedRow();
+			int realSelectedRow = lista.convertRowIndexToModel(selectedRow);
+			if (data.getValueAt(realSelectedRow, 2)==null || "".equals(data.getValueAt(realSelectedRow, 2)))	{
+				JOptionPane.showMessageDialog(eg, "Nie można zakończyć tego postępowania");
+			}
+			else {
+				System.out.println("kończę");
+				data.cellUpdate("done", realSelectedRow, 4);
+				try {
+					new Zapis(data);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+				
+			//System.out.println(" to ma być " + popupStr[1] + lista.getSelectedRow() );
+		}
+		if (u.equals(popupStr[2]))	{
 			//System.out.println(" to ma być " + popupStr[1] + lista.getSelectedRow() );
 		}
 		

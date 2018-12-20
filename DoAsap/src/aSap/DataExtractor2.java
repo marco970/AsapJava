@@ -24,11 +24,15 @@ public class DataExtractor2 {
 	Integer[] ZZHours;
 	Integer[] PZHours;
 	Integer[] DKHours;
-	 
 	
-	public DataExtractor2(MainTableModel model, int month, int year, CalendarTest ct)	{
+	String cPLK, cPLI, cCPO;
+	
+	public DataExtractor2(MainTableModel model, int month, int year, CalendarTest ct, String u, String w, String v)	{
 		
-		//System.out.println("szafa gra 2");
+		cPLK = u;
+		cPLI = w;
+		cCPO = v;
+		
 		ZZ = new ArrayList<String>();
 		PZ = new ArrayList<String>();
 		DK = new ArrayList<String>();
@@ -55,15 +59,6 @@ public class DataExtractor2 {
 		createData(PZdc, PZ, PZday);
 		createData(DKdc, DK, DKday);
 
-		/*
-		ZZdc.showAll();
-		PZdc.showAll();
-		DKdc.showAll();
-		
-		*/
-		
-		
-		
 		ZZrow = ZZdc.getAll();
 		ZZHours = ZZdc.getHours();
 		
@@ -72,7 +67,6 @@ public class DataExtractor2 {
 
 		DKrow = DKdc.getAll();
 		DKHours = DKdc.getHours();
-
 
 	}
 	
@@ -101,9 +95,9 @@ public class DataExtractor2 {
 		for (int i=0; i<=rowCount-1; i++)	{ 
 			String a = (String) mod.getValueAt(i, position+10); //to jest data 
 			String b = (String) mod.getValueAt(i, 9);
-			String cond1 = "PLK";
-			String cond2 = " ";
-			String cond3 = " ";
+			String cond1 = cPLK;
+			String cond2 = cPLI;
+			String cond3 = cCPO;
 			
 			if (!(("").equals(a)||a==null))	{ //czy data istnieje, jak nie, to skok do następnego wiersza
 				//System.out.println(a.substring(3, 5)+"  "+a.substring(6, 10));
@@ -122,7 +116,7 @@ public class DataExtractor2 {
 								DK.add((String) mod.getValueAt(i, position));
 								DKday.add(Integer.parseInt(a.substring(0, 2)));
 							}
-							System.out.println((String) mod.getValueAt(i, position)+"*"+a+" "+i+" "+b);	
+							//System.out.println((String) mod.getValueAt(i, position)+"*"+a+" "+i+" "+b);	
 						}//koniec B)
 						
 					}// koniec A)
@@ -130,15 +124,7 @@ public class DataExtractor2 {
 			}					
 		}
 	}
-	
-	public static void main(String[] args) {		//przy czyszczeniu do wywalenia
-		// TODO Auto-generated method stub
-		int m = 12;
-		CalendarTest ct = new CalendarTest(2018, m);
-		new DataExtractor2(new MainTableModel(), m, 2018, ct);
-		
 
-	}
 
 
 }

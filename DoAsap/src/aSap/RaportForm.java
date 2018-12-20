@@ -1,20 +1,17 @@
 package aSap;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import net.miginfocom.swing.MigLayout;
 
 public class RaportForm extends RawForm implements ActionListener {
@@ -23,11 +20,16 @@ public class RaportForm extends RawForm implements ActionListener {
 	private JButton btnSave = new JButton("Generuj raport");
 	private JButton btnCancel = new JButton("Anuluj");
 	
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
-	private JComboBox comboBoxMonth;
-	private JComboBox comboBoxYear;
+
+	
+	JLabel lblNewLabel_4;
+	JCheckBox plk;
+	JCheckBox pli;
+	JCheckBox cpo;
+	
+	
+	private JComboBox<String> comboBoxMonth;
+	private JComboBox<Object> comboBoxYear;
 	private String[] months =
 				{"grudzień", 
 				"listopad",
@@ -67,9 +69,7 @@ public class RaportForm extends RawForm implements ActionListener {
 		for (int i = 0; i <= n-2018+2; i++)	{
 			yearList.add((n-i)+"");
 		}
-		String[] yearArr = new String[yearList.size()];
-		//yearArr = (String[]) yearList.toArray();
-		//buttons
+		
 		btnSave.addActionListener(this);	
 		btnCancel.addActionListener(this);
 		
@@ -79,25 +79,40 @@ public class RaportForm extends RawForm implements ActionListener {
 		JPanel panel = new JPanel();
 		addToContPane(panel, "cell 0 1,grow");
 		panel.setLayout(new MigLayout("", "[grow][][grow]", "[][][][]"));
-		lblNewLabel_1 = new JLabel("zmień okres raportu");
+		
+
+		JLabel  lblNewLabel_1 = new JLabel("<html><u>zmień okres raportu:</u></html>");
 		panel.add(lblNewLabel_1, "cell 0 0");
 		
-		lblNewLabel_2 = new JLabel("zmień miesiąc");
+		JLabel  lblNewLabel_2 = new JLabel("zmień miesiąc");
 		panel.add(lblNewLabel_2, "cell 0 2");
 		
-		lblNewLabel_3 = new JLabel("zmień rok");
+		JLabel lblNewLabel_3 = new JLabel("zmień rok");
 		panel.add(lblNewLabel_3, "cell 2 2");
 		
 		comboBoxMonth = new JComboBox<String>(monthArr);
 		panel.add(comboBoxMonth, "cell 0 3,growx");
-		//comboBoxMonth.addActionListener(this);
 		
 		comboBoxYear = new JComboBox<Object>(yearList.toArray());
 		panel.add(comboBoxYear, "cell 2 3,growx");
-		//comboBoxYear.addActionListener(this);
+		
+		panel.add(new JLabel("         "), "cell 3 5, growx");
+		
+		JLabel lblNewLabel_4 = new JLabel("<html><u>wybierz spółki do raportu:</u></html>");
+		panel.add(lblNewLabel_4, "cell 0 6");
+		
+		plk = new JCheckBox("PLK");
+		panel.add(plk, "cell 0 7");
+		
+		pli = new JCheckBox("PLI");
+		pli.setSelected(true);
+		panel.add(pli, "cell 0 8");
 		
 		
-		// TODO Auto-generated constructor stub
+		cpo = new JCheckBox("CPO");
+		cpo.setSelected(true);
+		panel.add(cpo, "cell 0 9");
+
 	}
 
 	@Override
@@ -108,15 +123,26 @@ public class RaportForm extends RawForm implements ActionListener {
 		}
 		if(command.equals("Generuj raport"))	{
 			ArrayList<String> monthsList = new ArrayList<String>(Arrays.asList(months));
+			
+			String u = " ";
+			String w = " ";
+			String v = " ";
+			
+			if (!plk.isSelected()) u = plk.getText();
+			if (!pli.isSelected()) w = pli.getText();
+			if (!cpo.isSelected()) v = cpo.getText();
+			
 			String a = comboBoxYear.getSelectedItem().toString();
 			int y = Integer.parseInt(a);
 			try {
-				new RaportExcell(model , "Marcin Kuciak", 12-monthsList.indexOf(comboBoxMonth.getSelectedItem()), y);
+				new RaportExcell(model , "Marcin Kuciak", 12-monthsList.indexOf(comboBoxMonth.getSelectedItem()), y, u, w, v);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 			closeThisFrame();
-			System.out.println((12-monthsList.indexOf(comboBoxMonth.getSelectedItem()))+" "+comboBoxYear.getSelectedItem());
+			//System.out.println((12-monthsList.indexOf(comboBoxMonth.getSelectedItem()))+" "+comboBoxYear.getSelectedItem());// do wywalenia
+			//System.out.println(u+w+v); //do wywalenia
+			
 		}
 
 

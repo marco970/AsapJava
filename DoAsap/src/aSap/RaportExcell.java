@@ -35,10 +35,12 @@ public class RaportExcell {
 			};
 	private DataExtractor2 de;
 	
-	public RaportExcell(MainTableModel model, String kupiec, int monthP, int yearP) throws IOException	{
+	//String cPLK, cPLI, cCPO;
+	
+	public RaportExcell(MainTableModel model, String kupiec, int monthP, int yearP, String u, String w, String v) throws IOException	{
 		
 		
-			
+
 		
 		year = yearP;
 		month = monthP;
@@ -46,16 +48,13 @@ public class RaportExcell {
 		CalendarTest ct = new CalendarTest(year, month);
 		int dniMies = ct.getDayNo(month);
 		
-		de = new DataExtractor2(model, monthP, yearP, ct);
+		de = new DataExtractor2(model, monthP, yearP, ct, u, w, v);
 
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet(kupiec);
-		//sheet.autoSizeColumn(2);  
 		
 		HSSFCellStyle cs = workbook.createCellStyle();
 		cs.setWrapText(true);
-		//HSSFCellStyle style = workbook.createCellStyle();
-		
 		
 		Font fontNormal = workbook.createFont();  
 		fontNormal.setFontHeightInPoints((short) 9);  
@@ -297,8 +296,8 @@ public class RaportExcell {
 				
 				
 		}
-	public static void main(String[] args) throws IOException	{
-		new RaportExcell(new MainTableModel(), "Marcin Kuciak", 11, 2018);
+	public static void main(String[] args) throws IOException	{ //metoda do wywalenia
+		new RaportExcell(new MainTableModel(), "Marcin Kuciak", 11, 2018, "PLK", "", "");
 		//do testów, potem wywalić metodę
 	}
 }

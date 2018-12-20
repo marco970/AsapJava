@@ -11,9 +11,6 @@ import javax.swing.table.AbstractTableModel;
 
 public class MainTableModel extends AbstractTableModel {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static String[] nazwyKolumn = {"ZZ", "PZ", "WP", "DK", "Status", 
 			"Przemiot Zakupu", "Dostawca", "Nazwa", "Tryb postępowania", "Spółka", 
@@ -23,10 +20,7 @@ public class MainTableModel extends AbstractTableModel {
 	 */
 	//private boolean[] notNull = 
 	private String[] ZZ = {"notNull"};
-	
-	
-	
-	
+
 	//private String current = "F:/aSapData/Current3.txt";
 	//private String current = "C:/Users/Lappo/git/AsapJava/aSapData/Current3.txt";
 	private String current = "Current4.txt";
@@ -168,5 +162,10 @@ public class MainTableModel extends AbstractTableModel {
 		dane=daneUpd;
 		fireTableRowsUpdated(rowNr, rowNr);
 		fireTableDataChanged();	
+		
+	}
+	public void cellUpdate(Object value, int rowNr, int kolNr)	{
+		dane[rowNr][kolNr] = value;
+		fireTableCellUpdated(rowNr, kolNr);
 	}
 }

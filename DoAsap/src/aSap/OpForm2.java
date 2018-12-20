@@ -291,7 +291,7 @@ public class OpForm2 implements ActionListener, FocusListener {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(e.getActionCommand());
+		//System.out.println(e.getActionCommand());
 		if (e.getActionCommand().equals("close"))	{
 			opForm.setVisible(false); //to jakimś cudem działa dobrze
 		}
@@ -340,6 +340,7 @@ public class OpForm2 implements ActionListener, FocusListener {
 		//EoDS
 		
 		//walidacja  //out wszystko poniżej
+		//tu trzeba wyjebać starą walidację....
 		
 		Validator vali = new Validator(savedRow, model);
 		validateArr = (String[]) vali.getMessageArray();
@@ -376,15 +377,12 @@ public class OpForm2 implements ActionListener, FocusListener {
 
 	@Override
 	public void focusGained(FocusEvent e) {
-		//nic się nie dzieje
+		//nic się nie dzieje, musi zostać
 	}
 
 	@Override
 	public void focusLost(FocusEvent e) {
-		//System.out.println("toooo- "+((JTextComponent) e.getSource()).getName());
-		//System.out.println("ta1- "+((JTextComponent) e.getSource()).getText());
-		//String odFocus = ((JTextComponent) e.getSource()).getText();
-		//String odFocusName = e.getComponent().getName();
+
 		SingleFieldValidator valCheck = new SingleFieldValidator();
 		if (((JTextComponent) e.getSource()).getName().equals("PZ")) {
 			SingleFieldValidator zzVal = new SingleFieldValidator("PZ", ((JTextComponent) e.getSource()).getText(), model, rowNr, this);
