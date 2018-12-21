@@ -78,7 +78,7 @@ public class MainFrame4 extends JFrame implements ActionListener {
 		MainTableModel dane = new MainTableModel();
 		JTable table = new JTable(dane);
 		table.setComponentPopupMenu(popupMenu);
-		table.addMouseListener(new TableMouseListener(table));
+		//table.addMouseListener(new TableMouseListener(table));
 		JScrollPane scrollPane = new JScrollPane(table);
 
 		

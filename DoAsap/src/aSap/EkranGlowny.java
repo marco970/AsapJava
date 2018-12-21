@@ -119,13 +119,18 @@ public class EkranGlowny implements ActionListener {
 		doMassAddMenu(menuBar, toDo);
 		doMassAddMenu(menuBar, notatki);
 		
-		popupMenu = new JPopupMenu();
-		
-		doMassAddMenu(popupMenu, popupStr);
+
 
 		eg.setJMenuBar(menuBar); // f - oznacza obiekt typu JFrame
+		
+		TableMouseListener tbml = new TableMouseListener(lista, data, this);
+		
+		lista.addMouseListener(tbml);
+		System.out.println("**##**"+tbml.getPopupString());
+		popupMenu = new JPopupMenu();		
+		doMassAddMenu(popupMenu, tbml.getPopupString());
 		lista.setComponentPopupMenu(popupMenu);
-		lista.addMouseListener(new TableMouseListener(lista));
+
 
 		eg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		eg.setVisible(true);
@@ -136,6 +141,9 @@ public class EkranGlowny implements ActionListener {
 		//eg.pack();
 		//scroll.setVisible(true); - nie potrzeba
 
+	}
+	public void setPopupContent(String[] s)	{
+		popupStr = s;
 	}
 	public void doMassAddMenu(JPopupMenu popup, String...args)	{
 		//JMenu menu = new JMenu(args[0]);
