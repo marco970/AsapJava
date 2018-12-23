@@ -60,11 +60,13 @@ public class OpForm2 implements ActionListener, FocusListener {
 	JButton btnSave;
 	JButton btnClose;
 
-	public OpForm2(String nazwa, int rowNo, MainTableModel mod, ErrMessageShow errMS)  {
+	public OpForm2(String nazwa, int rowNo, MainTableModel mod)  {
 		
-		errMessage = new ErrMessage(mod); //out
+		
+		/*errMessage = new ErrMessage(mod); //out
 		String[] errMessageStr = errMessage.getErrMessage();	//out
 		errMessage.addPropertyChangeListener(errMS); //potrzebne?//out
+		*/
 				
 		this.model = mod;
 		this.rowNr = rowNo;
@@ -344,9 +346,9 @@ public class OpForm2 implements ActionListener, FocusListener {
 		
 		Validator vali = new Validator(savedRow, model);
 		validateArr = (String[]) vali.getMessageArray();
-		for (String el: validateArr)	{
-		}
-		errMessage.setErrMessage(validateArr);		//to poprawić, 
+		//for (String el: validateArr)	{ ---------------------<<<<
+		//}
+		//errMessage.setErrMessage(validateArr);		//to poprawić, 
 													//powinno być chyba w rozsądniejszym miejscu
 		test = vali.getValDone();
 

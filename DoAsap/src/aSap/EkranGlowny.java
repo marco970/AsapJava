@@ -3,6 +3,8 @@ package aSap;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -57,18 +59,6 @@ public class EkranGlowny implements ActionListener {
 		    });
 	}
 	
-	public int compare(Object a, Object b) {		//metoda do testów, na koniec do wywalenia.
-		int n1, n2;
-		String aS = a.toString();
-		String bS = b.toString();
-		n1 = Integer.valueOf(aS.substring(0, 2))+30*Integer.valueOf(aS.substring(3, 5))+30*12*Integer.valueOf(aS.substring(6, 10));//+30*Integer.valueOf(aS.substring(3, 6))
-		n2 = Integer.valueOf(bS.substring(0, 2))+30*Integer.valueOf(bS.substring(3, 5))+30*12*Integer.valueOf(bS.substring(6, 10));
-		System.out.println(aS+" "+n1+" "+bS+" "+n2);
-		System.out.println(aS+" "+bS+"---"+aS.substring(6, 10));
-		System.out.println(n1+" "+n2);
-		return n1 - n2;
-	}
-	
 	public void createGui(String tytul)	{
 		MainTableModel dane = new MainTableModel();
 		data = dane;
@@ -98,7 +88,6 @@ public class EkranGlowny implements ActionListener {
 		sorter.setRowFilter(filter);
 		lista.setRowSorter(sorter);
 		Dimension dim = new Dimension(width, height);
-		//dim.setSize(width, height);
 		lista.setPreferredSize(dim);
 		JScrollPane scroll = new JScrollPane(lista);
 
@@ -118,34 +107,28 @@ public class EkranGlowny implements ActionListener {
 		doMassAddMenu(menuBar, sort);
 		doMassAddMenu(menuBar, toDo);
 		doMassAddMenu(menuBar, notatki);
-		
-
 
 		eg.setJMenuBar(menuBar); // f - oznacza obiekt typu JFrame
 		
-		TableMouseListener tbml = new TableMouseListener(lista, data, this);
+		PopupMenuBean pmb = new PopupMenuBean(popupStr);
+		
+		TableMouseListener tbml = new TableMouseListener(lista, data, pmb);
+		PopupContent pc = new PopupContent(lista, data, eg);
+		
+		pmb.addPropertyChangeListener(pc);
 		
 		lista.addMouseListener(tbml);
-		System.out.println("**##**"+tbml.getPopupString());
-		popupMenu = new JPopupMenu();		
-		doMassAddMenu(popupMenu, tbml.getPopupString());
-		lista.setComponentPopupMenu(popupMenu);
 
+		lista.setComponentPopupMenu(pc); //tu wrzucamy dynamiczny obiekt
 
 		eg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		eg.setVisible(true);
-		
-		
-		
-		
-		//eg.pack();
-		//scroll.setVisible(true); - nie potrzeba
 
 	}
 	public void setPopupContent(String[] s)	{
 		popupStr = s;
 	}
-	public void doMassAddMenu(JPopupMenu popup, String...args)	{
+	public void doMassAddMenu(JPopupMenu popup, String...args)	{ //metoda z Popup do wywalenia z tej klasy
 		//JMenu menu = new JMenu(args[0]);
 		//popup.add(menu);
 		for (int i =0; i<=args.length-1; i++)	{
@@ -273,7 +256,7 @@ public class EkranGlowny implements ActionListener {
 			int selectedRow = lista.getSelectedRow();
 			int realSelectedRow = lista.convertRowIndexToModel(selectedRow);
 
-			new OpForm2("Edycja postępowania", realSelectedRow, data, errMS);
+			new OpForm2("Edycja postępowania", realSelectedRow, data);
 			
 			//System.out.println(" to ma być " + popupStr[0] + lista.getSelectedRow() );
 		}
@@ -303,5 +286,7 @@ public class EkranGlowny implements ActionListener {
 		}
 		
 	}
+
+
 
 }
