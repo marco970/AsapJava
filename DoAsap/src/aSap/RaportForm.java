@@ -22,10 +22,10 @@ public class RaportForm extends RawForm implements ActionListener {
 	
 
 	
-	JLabel lblNewLabel_4;
-	JCheckBox plk;
-	JCheckBox pli;
-	JCheckBox cpo;
+	private JLabel lblNewLabel_4;
+	private JCheckBox plk;
+	private JCheckBox pli;
+	private JCheckBox cpo;
 	
 	
 	private JComboBox<String> comboBoxMonth;

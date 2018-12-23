@@ -23,8 +23,8 @@ public class TableMouseListener extends MouseAdapter  {
        int currentRow = table.rowAtPoint(point);
        table.setRowSelectionInterval(currentRow, currentRow);
        
-       //int selectedRow = table.getSelectedRow();
-       int realSelectedRow = table.convertRowIndexToModel(currentRow);
+       int selectedRow = table.getSelectedRow();
+       int realSelectedRow = table.convertRowIndexToModel(selectedRow);
 		
        String[] popupStr1 = {"modyfikacja", "zmień daty"};
        String[] popupStr2 = {"modyfikacja", "zmień daty", "zakończ postępowanie", "zawieś postepowanie"};
