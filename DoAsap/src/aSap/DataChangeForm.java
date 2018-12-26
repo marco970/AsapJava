@@ -27,6 +27,14 @@ public class DataChangeForm extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private MainTableModel model;
+	
+
+	private String[] labNames = {"data ZZ", "data PZ", "data WP", "data DK"};
+	private JLabel[] labs;
+	private JTextField[] tfs;
+	private JLabel[] errMessage;
+	
+	private int rowNr;
 
 	/**
 	 * Launch the application.
@@ -35,7 +43,7 @@ public class DataChangeForm extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DataChangeForm frame = new DataChangeForm(new MainTableModel());
+					DataChangeForm frame = new DataChangeForm(new MainTableModel(), 3);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,9 +55,16 @@ public class DataChangeForm extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DataChangeForm(MainTableModel model) {
+	public DataChangeForm(MainTableModel model, int rowNr) {
 		
 		this.model = model;
+		this.rowNr = rowNr;
+		
+		labs = new JLabel[labNames.length];
+		tfs  = new JTextField[labNames.length];
+		errMessage = new JLabel[labNames.length];
+		
+		
 		setTitle("Zmiana dat postępowania");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 600);
@@ -69,15 +84,25 @@ public class DataChangeForm extends JFrame {
 				+ "<p></p>"
 				+ "<p>Zmiana dat postępowania:"
 				+ "</p></html>");
-		panel.add(lblNewLabel, "cell 0 0 2 1");
+		panel.add(lblNewLabel, "cell 0 0 3 1");
 		//JLabel lblNewLabel_u = new JLabel(" ");
 		//panel.add(lblNewLabel_u, "cell 0 1,alignx trailing");
 		
 		
-		for (int i = 0; i<=3; i++)	{
+		for (int i = 0; i<=labNames.length-1; i++)	{
+			//JLabel aa = new JLabel(labNames[i]);
+			//.out.println(labNames.length);
+			labs[i] = new JLabel(labNames[i]);
+			panel.add(labs[i], "cell 0 "+(i+2));
+			
+			tfs[i] = new JTextField(10);
+			panel.add(tfs[i], "cell 1 "+(i+2));
+			
+			errMessage[i] = new JLabel("nieprawidłowa data");
+			panel.add(errMessage[i], "cell 2 "+(i+2));
 			
 		}
-		
+		/*
 		lblNewLabel_1 = new JLabel("DataZZ");
 		panel.add(lblNewLabel_1, "cell 0 2,alignx trailing");
 		
@@ -89,7 +114,7 @@ public class DataChangeForm extends JFrame {
 		panel.add(lblNewLabel_2, "cell 0 3,alignx trailing");
 		
 		textField_1 = new JTextField(10);
-		textField_1.setText(model.getValueAt(arg0, arg1));
+		textField_1.setText((String) model.getValueAt(rowNr, 10));
 		
 		panel.add(textField_1, "cell 1 3");
 		//textField_1.setColumns(20);
@@ -107,7 +132,7 @@ public class DataChangeForm extends JFrame {
 		textField_3 = new JTextField(10);
 		panel.add(textField_3, "cell 1 5");
 		//textField_3.setColumns(10);
-		
+		*/
 		
 		
 		
