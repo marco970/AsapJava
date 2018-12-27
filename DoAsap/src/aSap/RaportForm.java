@@ -140,7 +140,7 @@ public class RaportForm extends RawForm implements ActionListener {
 				e1.printStackTrace();
 			}
 			closeThisFrame();
-			//System.out.println((12-monthsList.indexOf(comboBoxMonth.getSelectedItem()))+" "+comboBoxYear.getSelectedItem());// do wywalenia
+			System.out.println((12-monthsList.indexOf(comboBoxMonth.getSelectedItem()))+" "+comboBoxYear.getSelectedItem());// do wywalenia
 			//System.out.println(u+w+v); //do wywalenia
 			
 		}

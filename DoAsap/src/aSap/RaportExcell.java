@@ -255,8 +255,9 @@ public class RaportExcell {
 				cellArr[7][1].setCellStyle(cs3);
 				
 				//generowanie zawartości
+				//(int j = 2; j<=dniMies*2-1+2; j=j+2)
 				
-			for (int i = 2; i<=dniMies*2-1; i=i+2)	{
+			for (int i = 2; i<=dniMies*2-1+2; i=i+2)	{
 				String[] zz = new String[de.getExRow("ZZ").length];
 				String[] pz = new String[de.getExRow("PZ").length];
 				String[] dk = new String[de.getExRow("DK").length];

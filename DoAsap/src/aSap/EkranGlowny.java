@@ -269,7 +269,7 @@ public class EkranGlowny implements ActionListener {
 				JOptionPane.showMessageDialog(eg, "Nie można zakończyć tego postępowania");
 			}
 			else {
-				System.out.println("kończę");
+				//System.out.println("kończę");
 				data.cellUpdate("done", realSelectedRow, 4);
 				try {
 					new Zapis(data);
