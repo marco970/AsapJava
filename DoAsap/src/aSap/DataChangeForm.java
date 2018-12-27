@@ -47,7 +47,7 @@ public class DataChangeForm extends JFrame implements ActionListener, FocusListe
 	 * Create the frame.
 	 */
 	public DataChangeForm(MainTableModel model, int rowNr) {
-		
+		super();
 		this.model = model;
 		this.rowNr = rowNr;
 		
@@ -195,8 +195,11 @@ public class DataChangeForm extends JFrame implements ActionListener, FocusListe
 	/**
 	 * Launch the application.
 	 */
-	/*
+	
 	public static void main(String[] args) {	//do wywalenia na koniec
+		
+		DataChangeForm frame = new DataChangeForm(new MainTableModel(), 3);
+		/*
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -206,8 +209,8 @@ public class DataChangeForm extends JFrame implements ActionListener, FocusListe
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
 	}
-	*/
+	/**/
 
 }

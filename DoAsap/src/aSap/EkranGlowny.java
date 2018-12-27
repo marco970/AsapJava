@@ -145,9 +145,7 @@ public class EkranGlowny implements ActionListener {
 
 				JMenuItem menuItem = mi(args[i]);
 				menu.add(menuItem);
-			
-			
-			
+	
 		}
 	}
 	public JMenuItem mi(String str)	{
@@ -183,11 +181,13 @@ public class EkranGlowny implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		String u = e.getActionCommand();
+		
+		System.out.println(u);
 
 		if (u.equals(start[3]))	{
 			System.exit(0);
 		}
-		ErrMessageShow errMS = new ErrMessageShow(data); 		//do wywalenia?
+		//ErrMessageShow errMS = new ErrMessageShow(data); 		//do wywalenia?
 		if (u.equals(start[1]))	{
 			new NewForm(data.getRowCount()+1, data);
 		}
@@ -251,8 +251,8 @@ public class EkranGlowny implements ActionListener {
 				sorter.setRowFilter(filter);
 				lista.setRowSorter(sorter);
 
-		}
-		if (u.equals(popupStr[0]))	{
+		}/*
+		if (u.equals("modyfikacja"))	{	//popup do wywalenia - będzie w PopupContent
 			int selectedRow = lista.getSelectedRow();
 			int realSelectedRow = lista.convertRowIndexToModel(selectedRow);
 
@@ -261,7 +261,7 @@ public class EkranGlowny implements ActionListener {
 			//System.out.println(" to ma być " + popupStr[0] + lista.getSelectedRow() );
 		}
 		//okFo.addChangeListener(this); //czy to w ogóle jest potrzebne?
-		if (u.equals(popupStr[1]))	{
+		if (u.equals("zakończ postępowanie"))	{
 			//spr czy jest WP?
 			int selectedRow = lista.getSelectedRow();
 			int realSelectedRow = lista.convertRowIndexToModel(selectedRow);
@@ -281,9 +281,18 @@ public class EkranGlowny implements ActionListener {
 				
 			//System.out.println(" to ma być " + popupStr[1] + lista.getSelectedRow() );
 		}
-		if (u.equals(popupStr[2]))	{
+		if (u.equals("zmień daty"))	{
+			System.out.println("daty");
+			new DataChangeForm(data, lista.getSelectedRow());
+		}
+		if (u.equals("zawieś postepowanie"))	{
+			int selectedRow = lista.getSelectedRow();
+			int realSelectedRow = lista.convertRowIndexToModel(selectedRow);
+		}
+		if (u.equals("odwieś postępowanie"))	{
 			//System.out.println(" to ma być " + popupStr[1] + lista.getSelectedRow() );
 		}
+		*/
 		
 	}
 

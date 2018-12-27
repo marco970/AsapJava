@@ -70,11 +70,7 @@ public class SingleFieldValidator {
 		}
 		else spolka=model.getValueAt(rowNr,9).toString();
 		this.opF = opF;
-		//System.out.println("hej: "+opF.getPrecedValue(1));
-		//System.out.println("hej: "+opF.getPrecedValue(2));
-		//System.out.println("hej: "+opF.getPrecedValue(3));
 	}
-	
 	
 	public boolean getValidationResult()	{
 		return valDone;
@@ -168,7 +164,6 @@ public class SingleFieldValidator {
 				else	{
 					if (sndPart.equals("PLK") || sndPart.equals("PLI") || sndPart.equals("CPO") ) {
 						valOrg(true,"");
-						//spolka=sndPart;
 					}
 					else valOrg(false,"nieprawidłowy format numeru_2");
 					if(trdPart.matches("[0-9]{7}")) valOrg(true,"");

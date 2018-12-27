@@ -76,7 +76,32 @@ public class PopupContent extends JPopupMenu implements PropertyChangeListener, 
 				}
 			}
 		
-	}
+		}
+		if (u.equals("zmień daty"))	{
+			//System.out.println("Zmiana dat");
+			//new DataChangeForm(data, lista.getSelectedRow());
+			new DateChangeForm2(data, lista.getSelectedRow());
+		}
+		if (u.equals("zawieś postepowanie"))	{
+			int selectedRow = lista.getSelectedRow();
+			int realSelectedRow = lista.convertRowIndexToModel(selectedRow);
+			if(data.getValueAt(realSelectedRow, 4).equals("open"))	{
+				data.cellUpdate("on hold", realSelectedRow, 4);
+			}
+			else if (data.getValueAt(realSelectedRow, 4).equals("done")) {
+				JOptionPane.showMessageDialog(frame, "Nie można zamkniętego postępowania");
+			}
+			else if (data.getValueAt(realSelectedRow, 4).equals("on hold")) {
+				JOptionPane.showMessageDialog(frame, "Postępowanie już jest zawieszone");
+			}
+		}
+		if (u.equals("odwieś postępowanie"))	{
+			//int selectedRow = lista.getSelectedRow();
+			int realSelectedRow = lista.convertRowIndexToModel(lista.getSelectedRow());
+			if (data.getValueAt(realSelectedRow, 4).equals("on hold")) {
+				data.cellUpdate("open", realSelectedRow, 4);
+			}
+		}
 	}
 
 }
