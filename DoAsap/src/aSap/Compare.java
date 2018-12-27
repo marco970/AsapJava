@@ -2,10 +2,10 @@ package aSap;
 
 import java.util.Comparator;
 
-class Compare implements Comparator{
+class Compare implements Comparator  {
 	
 	@Override
-	public int compare(Object a, Object b) {
+	public int compare(Object a, Object b)   {
 		int n1, n2;
 		String aS = a.toString();
 		if ("".equals(aS) || aS.length()<10) n1 = 0;

@@ -38,7 +38,7 @@ public class EkranGlowny implements ActionListener {
 	String[] sort = {"Sort","Nieaktywne", "Aktywne","Zawieszone", "Zakończone"};
 	String[] toDo = {"ToDo", "Lista", "Notatki"};
 	String[] notatki = {"Notatki","Nowa notatka","Edytuj"};
-	String[] popupStr = {"modyfikacja", "zakończ postępowanie", "zawieś postepowanie"};
+	String[] popupStr = {"modyfikacja", "zmień daty", "zakończ postępowanie", "zawieś postepowanie"};
 	
 	static String[] nazwaMies = { "styczeń", "luty", "marzec", "kwiecień",
             "maj", "czerwiec", "lipiec", "sierpień",
@@ -125,7 +125,7 @@ public class EkranGlowny implements ActionListener {
 		eg.setVisible(true);
 
 	}
-	public void setPopupContent(String[] s)	{
+	public void setPopupContent(String[] s)	{		//do wywalenia
 		popupStr = s;
 	}
 	public void doMassAddMenu(JPopupMenu popup, String...args)	{ //metoda z Popup do wywalenia z tej klasy
