@@ -87,6 +87,12 @@ public class PopupContent extends JPopupMenu implements PropertyChangeListener, 
 			int realSelectedRow = lista.convertRowIndexToModel(selectedRow);
 			if(data.getValueAt(realSelectedRow, 4).equals("open"))	{
 				data.cellUpdate("on hold", realSelectedRow, 4);
+				try {
+					new Zapis(data);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			else if (data.getValueAt(realSelectedRow, 4).equals("done")) {
 				JOptionPane.showMessageDialog(frame, "Nie można zamkniętego postępowania");
@@ -100,6 +106,13 @@ public class PopupContent extends JPopupMenu implements PropertyChangeListener, 
 			int realSelectedRow = lista.convertRowIndexToModel(lista.getSelectedRow());
 			if (data.getValueAt(realSelectedRow, 4).equals("on hold")) {
 				data.cellUpdate("open", realSelectedRow, 4);
+				try {
+					new Zapis(data);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		}
 	}

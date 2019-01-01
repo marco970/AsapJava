@@ -251,7 +251,8 @@ public class EkranGlowny implements ActionListener {
 				sorter.setRowFilter(filter);
 				lista.setRowSorter(sorter);
 
-		}/*
+		}
+		/*
 		if (u.equals("modyfikacja"))	{	//popup do wywalenia - będzie w PopupContent
 			int selectedRow = lista.getSelectedRow();
 			int realSelectedRow = lista.convertRowIndexToModel(selectedRow);

@@ -101,7 +101,7 @@ public class NewForm implements  ActionListener, FocusListener {
 		//dodać status 
 		JLabel statusPolelab = new JLabel(model.getColumnName(4));
 		listaComp.add(statusPolelab);
-		statusPole = new JLabel("open");
+		statusPole = new JLabel("aktywne");
 		listaComp.add(statusPole);
 		panel.add(statusPolelab,"cell 0 2");
 		panel.add(statusPole,"cell 1 2");
@@ -227,7 +227,15 @@ public class NewForm implements  ActionListener, FocusListener {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			newFrame.setVisible(false);
+			String a = savedRow[0].substring(6)+"_";
+			String b = savedRow[7].replaceAll("\\s","_")+"_";
+			SimpleDateFormat datePart = new SimpleDateFormat("yyyyMM");
+			String c = datePart.format(currentDate)+"_";
+			String d = "_"+savedRow[9];
+			System.out.println(a+b+c+d);
+			new FolderCreator().createFolder(a+b+c+d);
+			
+			newFrame.dispose();
 		}
 	}
 }

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,10 +38,10 @@ public class OpForm2 implements ActionListener, FocusListener {
 	
 	private int rowNr;
 	
-	private String[] validateArr;
+	//private String[] validateArr;
 	private Component[] tfAll;
 	
-	private ErrMessage errMessage;
+	//private ErrMessage errMessage;
 	
 	private JFrame opForm;
 	private ArrayList<Component> listaComp = new ArrayList<Component>();		//out - jednak nie potrzeba, stara konstrukcja działa ok
@@ -71,10 +72,10 @@ public class OpForm2 implements ActionListener, FocusListener {
 		this.model = mod;
 		this.rowNr = rowNo;
 		this.colCount=model.getColumnCount();
-		this.validateArr = new String[model.getColumnCount()-model.getNumberDs()]; //out
+		//this.validateArr = new String[model.getColumnCount()-model.getNumberDs()]; //out
 		
 		//ramka
-		//-----------to do wyjebki
+		//-----------to do wyjebki 
 		opForm = new JFrame();
 		opForm.setTitle(nazwa);
 		opForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -134,7 +135,7 @@ public class OpForm2 implements ActionListener, FocusListener {
 			nazwaPola[i] = new JLabel(model.getColumnName(i));
 			panel.add(nazwaPola[i], targetNazwaPola[i]);
 			if (i==4)	{
-				String[] strA5 = {"open","done","on hold"}; //do modelu
+				String[] strA5 = {"aktywne","zakonczone","zawieszone"}; //do modelu
 				String defaultStatus = (String) model.getValueAt(rowNr, i);
 				statusPole = (JComboBox<String>) new JComboBox<String>(strA5);
 				statusPole.setSelectedItem(defaultStatus);
@@ -294,79 +295,95 @@ public class OpForm2 implements ActionListener, FocusListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//System.out.println(e.getActionCommand());
-		if (e.getActionCommand().equals("close"))	{
-			opForm.setVisible(false); //to jakimś cudem działa dobrze
+		if (e.getActionCommand().equals("Anuluj"))	{
+			opForm.dispose(); //to jakimś cudem działa dobrze
 		}
-		int liczbaDs = model.getNumberDs();
-		int liczbaWierszy = model.getRowCount();
 		
-		boolean test = true;
-	    Date currentDate = new Date();
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-	    String dateString = dateFormat.format(currentDate);
-		Object[] savedRow = new Object[colCount];
-		String[] rowAll = new String[tfAll.length];
-		for (int i = 0; i <= colCount-1; i++)	{
-			if (i<=colCount-1-liczbaDs)	{
-				if (i==4 || i==8) {
-		    		rowAll[i]=(String) ( (JComboBox<String>) tfAll[i]).getSelectedItem();
-		    	}
-				else if (i==0 || i==9)	{
-					rowAll[i] = ((JLabel) tfAll[i]).getText();
-				}
-				else if (i>0 && i<=3)	{
-					//System.out.println("nr: "+i+"; "+ model.doesElExists(rowNr, i)+" -- "+ model.getValueAt(rowNr, i));
-					if(model.doesElExists(rowNr, i)) rowAll[i] = ((JLabel) tfAll[i]).getText();					
-					else rowAll[i]= ((JTextComponent) tfAll[i]).getText();						
-				}
-				else	{
-		    		if (tfAll[i]==null)	{
-		    			rowAll[i]=" ";
-		    		}
-		    		else {
-		    			rowAll[i]= ((JTextComponent) tfAll[i]).getText();
-		    		}
-		    	}
-				savedRow[i]=rowAll[i];
-			}
-			else	{
-				savedRow[i]=model.getValueAt(rowNr, i);
-			}
-		}
 
 		//--odczyt z okienek
+		
+		if (e.getActionCommand().equals("Zapisz")) {
+			int liczbaDs = model.getNumberDs();
+			int liczbaWierszy = model.getRowCount();
+			//boolean test = true; //--->
+			Date currentDate = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+			String dateString = dateFormat.format(currentDate);
+			Object[] savedRow = new Object[colCount];
+			String[] rowAll = new String[tfAll.length];
+			for (int i = 0; i <= colCount - 1; i++) {
+				if (i <= colCount - 1 - liczbaDs) {
+					if (i == 4 || i == 8) {
+						rowAll[i] = (String) ((JComboBox<String>) tfAll[i]).getSelectedItem();
+					} else if (i == 0 || i == 9) {
+						rowAll[i] = ((JLabel) tfAll[i]).getText();
+					} else if (i > 0 && i <= 3) {
+						//System.out.println("nr: "+i+"; "+ model.doesElExists(rowNr, i)+" -- "+ model.getValueAt(rowNr, i));
+						if (model.doesElExists(rowNr, i))
+							rowAll[i] = ((JLabel) tfAll[i]).getText();
+						else
+							rowAll[i] = ((JTextComponent) tfAll[i]).getText();
+					} else {
+						if (tfAll[i] == null) {
+							rowAll[i] = " ";
+						} else {
+							rowAll[i] = ((JTextComponent) tfAll[i]).getText();
+						}
+					}
+					savedRow[i] = rowAll[i];
+				} else {
+					savedRow[i] = model.getValueAt(rowNr, i);
+				}
+				//System.out.println(i+" ---- "+savedRow[i]+" "+model.getValueAt(rowNr, i) );
 
-		//start DS
-		
-		savedRow = DsIterator(dateString, savedRow, liczbaWierszy, liczbaDs, rowNr);
-		//EoDS
-		
-		//walidacja  //out wszystko poniżej
-		//tu trzeba wyjebać starą walidację....
-		
-		Validator vali = new Validator(savedRow, model);
-		validateArr = (String[]) vali.getMessageArray();
-		//for (String el: validateArr)	{ ---------------------<<<<
-		//}
-		//errMessage.setErrMessage(validateArr);		//to poprawić, 
-													//powinno być chyba w rozsądniejszym miejscu
-		test = vali.getValDone();
+			}
+			savedRow = DsIterator(dateString, savedRow, liczbaWierszy, liczbaDs, rowNr);
+			//EoDS
+			//Zmiana folderu
+			FolderCreator folder = new FolderCreator();
+			String numerZZ = model.getValueAt(rowNr, 0).toString().substring(6);
+			String myPath = "";
+			//System.out.println();
+			System.out.println("Zmiana Statusu z: " + model.getValueAt(rowNr, 4) + " na: " + savedRow[4]);
+			if (savedRow[4].equals("zakonczone") && !model.getValueAt(rowNr, 4).equals("zakonczone")) {
+				System.out.println("Zmieniamy lokalizację folderu z " + folder.getAktywne());
+				myPath = folder.getDefaultPath() + folder.getAktywne();
+				findMoveFolder(numerZZ, myPath);
+			} 
+			else if (savedRow[4].equals("aktywne") && model.getValueAt(rowNr, 4).equals("zakonczone")) {
+				System.out.println("Zmieniamy lokalizację folderu z " + folder.getZamkniete());
+				myPath = folder.getDefaultPath() + folder.getZamkniete();
+				findMoveFolder(numerZZ, myPath);
+			}
+			else {
+				myPath = folder.getDefaultPath();
+			}
 
-		//EoWalidacja
-		if(test==true)	{
-			if(rowNr>liczbaWierszy) model.recordAdd(savedRow);
-			else model.recordUpdate(savedRow, rowNr);
-			try {new Zapis(model);} catch (IOException e1) {e1.printStackTrace();}
-			
+			model.recordUpdate(savedRow, rowNr);
+			try {
+				new Zapis(model);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			opForm.dispose(); //to jakimś cudem działa dobrze
 		}
-		opForm.setVisible(false); //to jakimś cudem działa dobrze
-		//jak zrobić, żeby kliknęcie Save przeładowało OpForm2
+		//System.out.println(e.getActionCommand());
 	}//koniec metody actionPerformed
-	/*
-	public void addChangeListener(EkranGlowny ekranGlowny) { 
-		//nie używana ale musi zostać
+	public void findMoveFolder(String numerZZ, String myPath)	{
+		if (myPath.length()>0)	{
+			System.out.println(myPath + " -- " + myPath.length());
+			int l = myPath.length();
+			//String[] fragmentZZ = new String[myPath.length()];
+			File[] directories = new File(myPath).listFiles(File::isDirectory);
+			System.out.println(" --> " + directories.length);
+			if (directories.length > 0) {
+				for (int i = 0; i <= directories.length - 1; i++) {
+					System.out.println(directories[i].toString().substring(myPath.length(), +myPath.length() + 7)+" ---> "+numerZZ);
+				}
+			}
+		}
+		
 	}
-	*/
 	public void elReplace(Component added, Component removed, JPanel p, String migTarget)	{	//czy aby na pewno potrzebujemy tej metody?
 		p.remove(removed);
 		p.add(added,migTarget);
@@ -406,5 +423,19 @@ public class OpForm2 implements ActionListener, FocusListener {
 
 		
 	}
+	/*
+	if (test == true) { //ten if pewnie też nie jest potrzebny
+		if (rowNr > liczbaWierszy) <------------------nie wie po co to jest? 
+			model.recordAdd(savedRow);
+		else
+			model.recordUpdate(savedRow, rowNr);
+		try {
+			new Zapis(model);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+	}
+	*/ 
 }//koniec klasy
 

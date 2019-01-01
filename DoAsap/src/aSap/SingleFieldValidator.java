@@ -171,6 +171,7 @@ public class SingleFieldValidator {
 					if (fieldName.equals("WP")||fstPart.equals("DK"))	{
 						if (sndPart.equals(spolka))	valOrg(true,"");
 						else valOrg(false,"nieprawidłowy format numeru_4");
+						System.out.println("fieldName: "+fieldName+" fstPart: "+fstPart+" sndPart: "+sndPart+" spolka "+spolka);
 					}
 				}
 			}
