@@ -344,16 +344,16 @@ public class OpForm2 implements ActionListener, FocusListener {
 			String numerZZ = model.getValueAt(rowNr, 0).toString().substring(6);
 			String myPath = "";
 			//System.out.println();
-			System.out.println("Zmiana Statusu z: " + model.getValueAt(rowNr, 4) + " na: " + savedRow[4]);
+			//System.out.println("Zmiana Statusu z: " + model.getValueAt(rowNr, 4) + " na: " + savedRow[4]);
 			if (savedRow[4].equals("zakonczone") && !model.getValueAt(rowNr, 4).equals("zakonczone")) {
-				System.out.println("Zmieniamy lokalizację folderu z " + folder.getAktywne());
+				//System.out.println("Zmieniamy lokalizację folderu z " + folder.getAktywne());
 				myPath = folder.getDefaultPath() + folder.getAktywne();
-				findMoveFolder(numerZZ, myPath);
+				findMoveFolder(numerZZ, myPath, true);
 			} 
 			else if (savedRow[4].equals("aktywne") && model.getValueAt(rowNr, 4).equals("zakonczone")) {
-				System.out.println("Zmieniamy lokalizację folderu z " + folder.getZamkniete());
+				//System.out.println("Zmieniamy lokalizację folderu z " + folder.getZamkniete());
 				myPath = folder.getDefaultPath() + folder.getZamkniete();
-				findMoveFolder(numerZZ, myPath);
+				findMoveFolder(numerZZ, myPath, false);
 			}
 			else {
 				myPath = folder.getDefaultPath();
@@ -369,16 +369,19 @@ public class OpForm2 implements ActionListener, FocusListener {
 		}
 		//System.out.println(e.getActionCommand());
 	}//koniec metody actionPerformed
-	public void findMoveFolder(String numerZZ, String myPath)	{
+	public void findMoveFolder(String numerZZ, String myPath, boolean tam)	{
 		if (myPath.length()>0)	{
-			System.out.println(myPath + " -- " + myPath.length());
-			int l = myPath.length();
+			//System.out.println(myPath + " -- " + myPath.length());
+			//int l = myPath.length();
 			//String[] fragmentZZ = new String[myPath.length()];
 			File[] directories = new File(myPath).listFiles(File::isDirectory);
-			System.out.println(" --> " + directories.length);
+			//System.out.println(" --> " + directories.length);
 			if (directories.length > 0) {
 				for (int i = 0; i <= directories.length - 1; i++) {
-					System.out.println(directories[i].toString().substring(myPath.length(), +myPath.length() + 7)+" ---> "+numerZZ);
+					//System.out.println(directories[i].toString().substring(myPath.length(), +myPath.length() + 7)+" ---> "+numerZZ);
+					if (directories[i].toString().substring(myPath.length(), +myPath.length() + 7).equals(numerZZ))	{
+						new FolderCreator().moveFolder(directories[i].toString().substring(myPath.length()), tam);
+					}
 				}
 			}
 		}

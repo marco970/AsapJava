@@ -40,7 +40,7 @@ public class FolderCreator {
 
 	public void moveFolder(String folderName, boolean tam)	{
 		
-		System.out.println(defaultPath);
+		//System.out.println(defaultPath);
 		
 		File destinationFolder;
 	    File sourceFolder;
@@ -52,8 +52,8 @@ public class FolderCreator {
 			sourceFolder = new File(defaultPath+zamknięte+folderName);
 			destinationFolder = new File(defaultPath+aktywne+folderName);
 		}
-		System.out.println(sourceFolder);
-		System.out.println(destinationFolder);
+		//System.out.println(sourceFolder);
+		//System.out.println(destinationFolder);
 
 	    if (!destinationFolder.exists())	{
 	    	destinationFolder.mkdirs();

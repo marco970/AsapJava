@@ -176,7 +176,7 @@ public class NewForm implements  ActionListener, FocusListener {
 		SingleFieldValidator zzVal = new SingleFieldValidator("ZZ", gotZZ, model, rowNr);
 		errZZLab.setText(zzVal.getErrMessage());
 		String spolka = zzVal.getSpolka();
-		System.out.println("*** "+spolka);
+		///System.out.println("*** "+spolka);
 		if (!zzVal.getValidationResult())	{//jeśli walidacja negatywna
 			btnNext.setEnabled(false);
 			poleZZ.requestFocus();
@@ -232,7 +232,7 @@ public class NewForm implements  ActionListener, FocusListener {
 			SimpleDateFormat datePart = new SimpleDateFormat("yyyyMM");
 			String c = datePart.format(currentDate)+"_";
 			String d = "_"+savedRow[9];
-			System.out.println(a+b+c+d);
+			System.out.println("---> "+a+b+c+d);
 			new FolderCreator().createFolder(a+b+c+d);
 			
 			newFrame.dispose();

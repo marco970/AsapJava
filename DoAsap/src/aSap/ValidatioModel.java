@@ -26,14 +26,7 @@ public class ValidatioModel {
 		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
-		
-		return a;		
-		
-	}
-	
-	
-	
+		}	
+		return a;			
+	}	
 }

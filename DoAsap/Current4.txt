@@ -16,7 +16,7 @@ ZZ/PLI0005841;PZ/0003335577;WP/PLI0006677;;aktywne;Kijek i siekierka od Wójka;W
 ZZ/CPO0005922;PZ/0004445555;;;aktywne;Narzędzia do wymiany uszczekl na rurze kanalizacyjnej w kuchni;Tulex;Tools_Toolex201812;z wolnej ręki;CPO;17.12.2018 at 10:27:47;18.10.2018;;;
 ZZ/PLK0005922;;;;aktywne;Platforma do zarządzania platformami;Ericsson;Platforma201812;inne;PLK;17.12.2018;;;;
 ZZ/PLI0005869;;;;aktywne;Proszę o przeprowadzenie postepowania przetargowego na wyłonienie dostawcy sprzętu DWDM na potrzeby realizacji Alien Lambda.;;DWDM_2018;przetarg;PLI;18.12.2018;;;;
-ZZ/PLI0005885;;;;aktywne;Okablowanie dla instalacji na Stadionie Narodowym;;OkablowanieNarodowy201812;przetarg;PLI;18.12.2018;;;;
+ZZ/PLI0005885;;;;zawieszone;Okablowanie dla instalacji na Stadionie Narodowym;;OkablowanieNarodowy201812;przetarg;PLI;18.12.2018;;;;
 ZZ/PLK0005886;;;;aktywne;aaa;;test3;z wolnej ręki;PLK;18.12.2018;;;;
 ZZ/PLK0003336;;;;aktywne;Rozbudowa instalacji na Stadionie Narodowym;;test5;przetarg;PLK;18.12.2018;;;;
 ZZ/PLK3334446;PZ/0000044444;;;aktywne;Coś tam;;etwas201812;inne;PLK;19.12.2018;19.12.2018;;;
@@ -24,11 +24,15 @@ ZZ/PLK0001934;;;;aktywne;Podpisanie Umowy Współpracy z Focus Telecom na sprzed
 ZZ/PLI0009991;;;;zawieszone;Miernik do mierzenia;;Miernik201812;przetarg;PLI;23.12.2018;;;;
 ZZ/PLK0003331;;;;aktywne;balabal;;Blablale;z wolnej ręki;PLK;23.12.2018;;;;
 ZZ/CPO2221113;;;;aktywne;kilo piasku;;piasek201812;inne;CPO;23.12.2018;;;;
-ZZ/PLK0005995;;;;aktywne;Przedmiotem zakupu jest ;;Utrzymanie siłowni;z wolnej ręki;PLK;27.12.2018;;;;
+ZZ/PLK0005995;;;;zawieszone;Przedmiotem zakupu jest ;;Utrzymanie siłowni;z wolnej ręki;PLK;27.12.2018;;;;
 szkolenie OTA Gemalto ;;;;;;;;;;;;;;
 w ramach ;;;;;;;;;;;;;;
 umowy DK/PLK0000870;Gemalto;;z wolnej ręki;;;;;;;;;;;
 ZZ/PLI0003344;;;;aktywne;Zakup sprzętu i usług wsparcia na potrzeby DE;;Sprzęt i usługi wsparcia;z wolnej ręki;PLI;30.12.2018;;;;
 ;;;;;;;;;;;;;;
-ZZ/CPO0005984;;;;zakonczone;HW+SW;;Serwery i wparcie;z wolnej ręki;CPO;30.12.2018;;;;
+ZZ/CPO0005984;;;;aktywne;HW+SW;;Serwery i wparcie;z wolnej ręki;CPO;30.12.2018;;;;
 ZZ/PLI0008344;;;;aktywne;bez enteru;;Platforma bez enteru;z wolnej ręki;PLI;01.01.2019;;;;
+ZZ/PLK0006121;PZ/0000004567;WP/PLK0003344;;aktywne;Karty do STP, kolejne;Nokia;Karty do STP;z wolnej ręki;PLK;01.01.2019;01.01.2019;01.01.2019;;
+ZZ/CPO0006234;PZ/0000002345;WP/CPO1112220;DK/CPO0003443;aktywne;Jakieś graty do Labu CP;Nokia;Karty do BTS;z wolnej ręki;CPO;01.01.2019;01.01.2019;01.01.2019;01.01.2019;
+ZZ/PLI0006267;PZ/0002233123;WP/PLI0006267;;aktywne;Usługi wsparcia do serwisu do kawy						;;Wsparcie serwisu kawowego;przetarg;PLI;01.01.2019;01.01.2019;01.01.2019;;
+ZZ/CPO0006321;PZ/0002223332;WP/CPO0004567;DK/CPO0002221;aktywne;aaa ccc ddd xxx;;co dla CPO;z wolnej ręki;CPO;01.01.2019;01.01.2019;01.01.2019;01.01.2019;

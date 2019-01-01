@@ -168,10 +168,10 @@ public class SingleFieldValidator {
 					else valOrg(false,"nieprawidłowy format numeru_2");
 					if(trdPart.matches("[0-9]{7}")) valOrg(true,"");
 					else valOrg(false,"nieprawidłowy format numeru_3");
-					if (fieldName.equals("WP")||fstPart.equals("DK"))	{
+					if (fieldName.equals("WP")||fieldName.equals("DK"))	{
 						if (sndPart.equals(spolka))	valOrg(true,"");
 						else valOrg(false,"nieprawidłowy format numeru_4");
-						System.out.println("fieldName: "+fieldName+" fstPart: "+fstPart+" sndPart: "+sndPart+" spolka "+spolka);
+						//System.out.println("fieldName: "+fieldName+" fstPart: "+fstPart+" sndPart: "+sndPart+" spolka "+spolka);
 					}
 				}
 			}

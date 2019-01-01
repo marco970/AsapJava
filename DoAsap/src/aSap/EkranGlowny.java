@@ -182,7 +182,7 @@ public class EkranGlowny implements ActionListener {
 
 		String u = e.getActionCommand();
 		
-		System.out.println(u);
+		//System.out.println(u);
 
 		if (u.equals(start[3]))	{
 			System.exit(0);
