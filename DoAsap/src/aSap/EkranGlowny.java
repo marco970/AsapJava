@@ -216,7 +216,7 @@ public class EkranGlowny implements ActionListener {
 			      public boolean include(Entry<?, ?> entry) {
 			        String status = (String) entry.getValue(4);
 			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
-			        return ("open".equals(status));
+			        return ("aktywne".equals(status));
 			        //return true;
 			      }
 			    };
@@ -230,7 +230,7 @@ public class EkranGlowny implements ActionListener {
 			      public boolean include(Entry<?, ?> entry) {
 			        String status = (String) entry.getValue(4);
 			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
-			        return ("on hold".equals(status));
+			        return ("zawieszone".equals(status));
 			        //return true;
 			      }
 			    };
@@ -244,7 +244,7 @@ public class EkranGlowny implements ActionListener {
 			      public boolean include(Entry<?, ?> entry) {
 			        String status = (String) entry.getValue(4);
 			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
-			        return ("done".equals(status));
+			        return ("zakonczone".equals(status));
 			        //return true;
 			      }
 			    };
