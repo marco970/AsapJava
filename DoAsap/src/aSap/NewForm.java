@@ -109,6 +109,7 @@ public class NewForm implements  ActionListener, FocusListener {
 		JLabel przemiotPolelab = new JLabel(model.getColumnName(5));
 		listaComp.add(przemiotPolelab);
 		przedmiotTa = new JTextArea(5,15);
+		przedmiotTa.setLineWrap(true);
 		JScrollPane scrl = new JScrollPane(przedmiotTa);
 		listaComp.add(scrl);
 		panel.add(przemiotPolelab,"cell 0 3");
@@ -213,7 +214,7 @@ public class NewForm implements  ActionListener, FocusListener {
 			for (int i=0; i<=model.getColumnCount()-1; i++)	{
 				if (i == 0)	savedRow[i] = poleZZ.getText();
 				else if(i==4) savedRow[i] = statusPole.getText();
-				else if(i==5) savedRow[i] = przedmiotTa.getText();
+				else if(i==5) savedRow[i] = przedmiotTa.getText().replaceAll("\n", " ").replaceAll("\t", " ");
 				else if(i==6) savedRow[i] = dostawcaPole.getText();
 				else if(i==7) savedRow[i] = nazwaPole.getText();
 				else if(i==8) savedRow[i] = (String) trybPole.getSelectedItem();

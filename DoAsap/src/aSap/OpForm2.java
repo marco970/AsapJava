@@ -205,6 +205,8 @@ public class OpForm2 implements ActionListener, FocusListener {
 			}
 			else if (i==5)	{
 				JTextArea a5 = new JTextArea(5, 15);
+				a5.setLineWrap(true);
+				
 				JScrollPane scrl = new JScrollPane(a5);
 				a[i]=a5;
 				b[i]=scrl;
@@ -327,7 +329,7 @@ public class OpForm2 implements ActionListener, FocusListener {
 						if (tfAll[i] == null) {
 							rowAll[i] = " ";
 						} else {
-							rowAll[i] = ((JTextComponent) tfAll[i]).getText();
+							rowAll[i] = ((JTextComponent) tfAll[i]).getText().replaceAll("\n", " ").replaceAll("\t", " ");;
 						}
 					}
 					savedRow[i] = rowAll[i];

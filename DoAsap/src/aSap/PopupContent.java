@@ -61,7 +61,7 @@ public class PopupContent extends JPopupMenu implements PropertyChangeListener, 
 		File[] directories = new File(myPath).listFiles(File::isDirectory);
 		//System.out.println("path: "+myPath+" ntZZ: "+numerZZ+" dierLength: "+directories.length);
 		
-		if (directories.length > 0) {
+		if (myPath.length() > 0) {		//
 			for (int i = 0; i <= directories.length - 1; i++) {
 				//System.out.println(directories[i].toString().substring(myPath.length(), +myPath.length() + 7)+" ---> "+numerZZ);
 				String x = "";

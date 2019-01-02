@@ -1,5 +1,5 @@
 ZZ/PLK9998882;PZ/3333334455;WP/PLK1112223;;zakonczone;Miernik do Eth;MiernikPol;ZnowuMiernik;z wolnej ręki;PLK;19.10.2018 at 09:01:52;03.11.2018 at 15:07:26;30.12.2018;;
-ZZ/CPO9990002;PZ/0000004727;WP/CPO0003332;;aktywne;aaa;Nokia;Przetarg;przetarg;CPO;04.11.2018 at 12:42:33;17.12.2018;01.01.2019;;
+ZZ/CPO9990002;PZ/0000004727;WP/CPO0003332;;zakonczone;aaa;Nokia;Przetarg;przetarg;CPO;04.11.2018 at 12:42:33;17.12.2018;01.01.2019;;
 ZZ/PLK9993332;PZ/0002227722;WP/PLK0009293;;zakonczone;Jakieś anteny;Kathrein;Oferta z dn. 12.10.2018;z wolnej ręki;PLK;04.11.2018 at 12:49:03;30.12.2018;01.01.2019;;
 ZZ/CPO3334445;PZ/2223334455;;;aktywne;TTT;aaa;ddd;z wolnej ręki;CPO;04.11.2018;13.11.2018;;;
 ZZ/PLK9998882;PZ/3333334455;;;aktywne;hej ju, ;Pink Floyd;;przetarg;PLK;19.10.2018 at 09:01:52;03.11.2018 at 15:07:26;;;
@@ -32,7 +32,9 @@ ZZ/PLI0003344;;;;aktywne;Zakup sprzętu i usług wsparcia na potrzeby DE;;Sprzę
 ;;;;;;;;;;;;;;
 ZZ/CPO0005984;;;;aktywne;HW+SW;;Serwery i wparcie;z wolnej ręki;CPO;30.12.2018;;;;
 ZZ/PLI0008344;;;;aktywne;bez enteru;;Platforma bez enteru;z wolnej ręki;PLI;01.01.2019;;;;
-ZZ/PLK0006121;PZ/0000004567;WP/PLK0003344;;aktywne;Karty do STP, kolejne;Nokia;Karty do STP;z wolnej ręki;PLK;01.01.2019;01.01.2019;01.01.2019;;
-ZZ/CPO0006234;PZ/0000002345;WP/CPO1112220;DK/CPO0003443;aktywne;Jakieś graty do Labu CP;Nokia;Karty do BTS;z wolnej ręki;CPO;01.01.2019;01.01.2019;01.01.2019;01.01.2019;
-ZZ/PLI0006267;PZ/0002233123;WP/PLI0006267;;aktywne;Usługi wsparcia do serwisu do kawy						;;Wsparcie serwisu kawowego;przetarg;PLI;01.01.2019;01.01.2019;01.01.2019;;
-ZZ/CPO0006321;PZ/0002223332;WP/CPO0004567;DK/CPO0002221;aktywne;aaa ccc ddd xxx;;co dla CPO;z wolnej ręki;CPO;01.01.2019;01.01.2019;01.01.2019;01.01.2019;
+ZZ/PLK0006121;PZ/0000004567;WP/PLK0003344;;zakonczone;Karty do STP, kolejne;Nokia;Karty do STP;z wolnej ręki;PLK;01.01.2019;01.01.2019;01.01.2019;;
+ZZ/CPO0006234;PZ/0000002345;WP/CPO1112220;DK/CPO0003443;zakonczone;Jakieś graty do Labu CP;Nokia;Karty do BTS;z wolnej ręki;CPO;01.01.2019;01.01.2019;01.01.2019;01.01.2019;
+ZZ/PLI0006267;PZ/0002233123;WP/PLI0006267;;zakonczone;Usługi wsparcia do serwisu do kawy						;;Wsparcie serwisu kawowego;przetarg;PLI;01.01.2019;01.01.2019;01.01.2019;;
+ZZ/CPO0006321;PZ/0002223332;WP/CPO0004567;DK/CPO0002221;zakonczone;aaa ccc ddd xxx;;co dla CPO;z wolnej ręki;CPO;01.01.2019;01.01.2019;01.01.2019;01.01.2019;
+ZZ/PLK0005919;PZ/0000004802;WP/PLK0003456;;aktywne;Zakup routerów 4G LTE LR77 v2 od producenta Advantech, na podstawie zaakceptowanego Memo z dnia 02/10/2018r ( w załączniku).;;Zakup routerów 4G LTE LR77;z wolnej ręki;PLK;02.01.2019;02.01.2019;02.01.2019;;
+ZZ/PLK0005993;PZ/0000009876;;;aktywne;aaa bbb ccc mmmm mmmmmmm mmmmmmmm mmmm gggggg  mgmgmgmgmg mgmgmhmhmhmh mgmgmgmgmggm mfmfmfm qqqqqq qqqq qq wwwwwwee rrrrrrrrrrrt yyyy;;abc;inne;PLK;02.01.2019;02.01.2019;;;
