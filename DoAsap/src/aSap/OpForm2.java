@@ -58,8 +58,9 @@ public class OpForm2 implements ActionListener, FocusListener {
 	JPanel panel;
 	
 	
-	JButton btnSave;
-	JButton btnClose;
+	private JButton btnSave;
+	private JButton btnClose;
+	private JButton btnNext;
 
 	public OpForm2(String nazwa, int rowNo, MainTableModel mod)  {
 		
@@ -247,20 +248,18 @@ public class OpForm2 implements ActionListener, FocusListener {
 			else if (i==3)	{
 				panel.add(errDKLab, "cell 2 3");
 			}
-			//errMessage[i] = new JLabel(errMessageStr[i]);//--------!//out
-			//panel.add(errMessage[i], targetErrMessage[i]); //out
-			
-			//errMessage[i].setHorizontalAlignment(SwingConstants.LEFT);
-			//errMessage[i].setForeground(Color.RED);
-			//errMessage[i].setFont(new Font("Tahoma", Font.PLAIN, 9));	
+
 						
 		}//koniec dużego for-----------------------
 		tfAll = a;
 		//przycisk---------------------------------------
 		btnSave = new JButton("Zapisz");
 		btnClose = new JButton("Anuluj");
+		btnNext = new JButton("Dalej");
 		btnSave.addActionListener(this);
 		btnClose.addActionListener(this);
+		btnNext.addActionListener(this);
+		//btnSave.setVisible(false);
 		
 		/*
 		
@@ -272,6 +271,7 @@ public class OpForm2 implements ActionListener, FocusListener {
 		
 		//to do dziedziczonej metody
 		contentPane.add(btnClose, "cell 0 2");
+		contentPane.add(btnNext, "cell 0 2");
 		contentPane.add(btnSave, "cell 0 2");
 	
 		//dalej
@@ -401,7 +401,10 @@ public class OpForm2 implements ActionListener, FocusListener {
 
 	@Override
 	public void focusGained(FocusEvent e) {
-		//nic się nie dzieje, musi zostać
+		btnNext.setEnabled(true);
+		//btnNext.setText("Dalej");
+		//btnSave.setVisible(true);
+		btnSave.setEnabled(false);	
 	}
 
 	@Override
@@ -418,13 +421,24 @@ public class OpForm2 implements ActionListener, FocusListener {
 			errWPLab.setText(zzVal.getErrMessage());
 			valCheck = zzVal;
 		}
-		if (((JTextComponent) e.getSource()).getName().equals("DK")) {
+		else if (((JTextComponent) e.getSource()).getName().equals("DK")) {
 			SingleFieldValidator zzVal = new SingleFieldValidator("DK", ((JTextComponent) e.getSource()).getText(), model, rowNr, this);
 			errDKLab.setText(zzVal.getErrMessage());
 			valCheck = zzVal;
 		}
-		if(!valCheck.getValidationResult())	btnSave.setEnabled(false);
-		else btnSave.setEnabled(true);
+		if(!valCheck.getValidationResult())	{
+			btnSave.setEnabled(false);
+			btnNext.setEnabled(true);
+		}
+		else {
+			/*
+			if (!((JTextComponent) e.getSource()).getText().equals(""))	{
+				btnSave.setEnabled(true);
+			}
+			*/
+			btnSave.setEnabled(true);
+			btnNext.setEnabled(false);
+		}
 
 		
 	}

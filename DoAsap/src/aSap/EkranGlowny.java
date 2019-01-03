@@ -35,7 +35,7 @@ public class EkranGlowny implements ActionListener {
 
 	//do menu - string pierwszy nazwa menu, kolejne - nazwy MenuItemów
 	String[] start = {"Start", "Nowe postępowanie", "Raport miesięczny", "Exit"};
-	String[] sort = {"Sort","Nieaktywne", "Aktywne","Zawieszone", "Zakończone"};
+	String[] sort = {"Sort","Nieaktywne", "Aktywne","Zawieszone", "Zakończone", "Wszystkie"};
 	String[] toDo = {"ToDo", "Lista", "Notatki"};
 	String[] notatki = {"Notatki","Nowa notatka","Edytuj"};
 	String[] popupStr = {"modyfikacja", "zmień daty", "zakończ postępowanie", "zawieś postepowanie"};
@@ -202,7 +202,7 @@ public class EkranGlowny implements ActionListener {
 			      public boolean include(Entry<?, ?> entry) {
 			        String status = (String) entry.getValue(4);
 			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
-			        return !("open".equals(status));
+			        return !("aktywne".equals(status));
 			        //return true;
 			      }
 			    };
@@ -245,6 +245,20 @@ public class EkranGlowny implements ActionListener {
 			        String status = (String) entry.getValue(4);
 			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
 			        return ("zakonczone".equals(status));
+			        //return true;
+			      }
+			    };
+				sorter.setRowFilter(filter);
+				lista.setRowSorter(sorter);
+
+		}
+		if (u.equals(sort[5]))	{
+			//System.out.println("sort teraz "+u);
+		    filter = new RowFilter<Object, Object>() {
+			      public boolean include(Entry<?, ?> entry) {
+			        String status = (String) entry.getValue(4);
+			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
+			        return (true);
 			        //return true;
 			      }
 			    };
