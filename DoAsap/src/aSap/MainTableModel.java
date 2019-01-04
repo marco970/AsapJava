@@ -19,7 +19,7 @@ public class MainTableModel extends AbstractTableModel {
 	 * Walidacja
 	 */
 	//private boolean[] notNull = 
-	private String[] ZZ = {"notNull"};
+	//private String[] ZZ = {"notNull"};
 
 	//private String current = "F:/aSapData/Current3.txt";
 	//private String current = "C:/Users/Lappo/git/AsapJava/aSapData/Current3.txt";

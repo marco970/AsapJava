@@ -61,6 +61,7 @@ public class RaportForm extends RawForm implements ActionListener {
 			if (i<=11) l=i;
 			else l=i-12;
 			monthArr[i-m] =  months[l];
+			System.out.println(months[l]+" "+monthArr[i-m]+" "+i+" "+l+" "+m );
 		}
 		//data - rok
 		int n = cal.get(Calendar.YEAR);
@@ -140,8 +141,8 @@ public class RaportForm extends RawForm implements ActionListener {
 				e1.printStackTrace();
 			}
 			closeThisFrame();
-			System.out.println((12-monthsList.indexOf(comboBoxMonth.getSelectedItem()))+" "+comboBoxYear.getSelectedItem());// do wywalenia
-			//System.out.println(u+w+v); //do wywalenia
+			System.out.println((monthsList.indexOf(comboBoxMonth.getSelectedItem()))+" "+comboBoxYear.getSelectedItem());// do wywalenia
+			System.out.println(u+w+v); //do wywalenia
 			
 		}
 
