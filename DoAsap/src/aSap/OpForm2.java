@@ -12,10 +12,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -28,8 +24,8 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JLabel;
-import javax.swing.JSeparator;
 
 public class OpForm2 implements ActionListener, FocusListener {
 
@@ -81,7 +77,7 @@ public class OpForm2 implements ActionListener, FocusListener {
 		opForm.setTitle(nazwa);
 		opForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		opForm.setVisible(true);
-		opForm.setBounds(100, 100, 450, 600);
+		opForm.setBounds(100, 100, 460, 600);
 		//panel
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -99,7 +95,7 @@ public class OpForm2 implements ActionListener, FocusListener {
 		String migLayRowNo = "";
 		String[] targetNazwaPola = new String[colCount];
 		String[] targetField = new String[colCount];
-		String[] targetErrMessage = new String[colCount];	//out
+		//String[] targetErrMessage = new String[colCount];	//out
 		for (int i = 0; i<=colCount-1; i++)	{
 			migLayRowNo = migLayRowNo+"[]";
 			targetNazwaPola[i] = "cell 0 "+ i;
@@ -171,14 +167,12 @@ public class OpForm2 implements ActionListener, FocusListener {
 				listaComp.add(a5);
 			}
 			else if (i>0 && i<=3)	{
-				//System.out.println("asd "+i+model.doesElExists(rowNr, i)+rowNr+model.getValueAt(rowNr, i));
+	
 				if (model.doesElExists(rowNr, i))	{
 					
 					JLabel a5 = new JLabel((String) model.getValueAt(rowNr, i));
 					a5.setName(model.getColumnName(i));
 
-						
-					
 					a[i]=a5;
 					listaComp.add(a5);
 					b[i]=a5;
@@ -248,8 +242,7 @@ public class OpForm2 implements ActionListener, FocusListener {
 			else if (i==3)	{
 				panel.add(errDKLab, "cell 2 3");
 			}
-
-						
+			
 		}//koniec dużego for-----------------------
 		tfAll = a;
 		//przycisk---------------------------------------
@@ -258,27 +251,16 @@ public class OpForm2 implements ActionListener, FocusListener {
 		btnNext = new JButton("Dalej");
 		btnSave.addActionListener(this);
 		btnClose.addActionListener(this);
-		btnNext.addActionListener(this);
-		//btnSave.setVisible(false);
-		
-		/*
-		
-		separator.setForeground(Color.GRAY);
-		separator.setVisible(true);
-		contentPane.add(separator, "cell 0 1");
-		*/
+
 		btnSave.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		//to do dziedziczonej metody
 		contentPane.add(btnClose, "cell 0 2");
 		contentPane.add(btnNext, "cell 0 2");
 		contentPane.add(btnSave, "cell 0 2");
 	
 		//dalej
 		//nowe etykiety błędów-----------
-
-		
-		
+	
 	}//koniec konstruktora
 
 	public Object[] DsIterator(String dateString, Object[] savedRow, int liczbaWierszy, int liczbaDs, int currRow)	{
@@ -298,16 +280,15 @@ public class OpForm2 implements ActionListener, FocusListener {
 	public void actionPerformed(ActionEvent e) {
 		//System.out.println(e.getActionCommand());
 		if (e.getActionCommand().equals("Anuluj"))	{
-			opForm.dispose(); //to jakimś cudem działa dobrze
+			opForm.dispose(); 
 		}
-		
 
 		//--odczyt z okienek
 		
 		if (e.getActionCommand().equals("Zapisz")) {
 			int liczbaDs = model.getNumberDs();
 			int liczbaWierszy = model.getRowCount();
-			//boolean test = true; //--->
+			
 			Date currentDate = new Date();
 			SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 			String dateString = dateFormat.format(currentDate);
@@ -402,28 +383,40 @@ public class OpForm2 implements ActionListener, FocusListener {
 	@Override
 	public void focusGained(FocusEvent e) {
 		btnNext.setEnabled(true);
-		//btnNext.setText("Dalej");
-		//btnSave.setVisible(true);
 		btnSave.setEnabled(false);	
 	}
 
 	@Override
-	public void focusLost(FocusEvent e) {
+	public void focusLost(FocusEvent e) {	/*
+											/-------> kod tej metody do poprawy. Zmiana konstruktorów SingleFieldValidator + setter na 2 pierwsze parametry
+											 * a moze wystarczy jedynie setter a konstruktor zostawić....
+											*/
 
 		SingleFieldValidator valCheck = new SingleFieldValidator();
+
 		if (((JTextComponent) e.getSource()).getName().equals("PZ")) {
 			SingleFieldValidator zzVal = new SingleFieldValidator("PZ", ((JTextComponent) e.getSource()).getText(), model, rowNr, this);
+			//System.out.println(zzVal.getErrMessage()+" 1");
 			errPZLab.setText(zzVal.getErrMessage());
+			//errPZLab.setEnabled(true);
+			//System.out.println(errPZLab.getText()+" 2");
 			valCheck = zzVal;
 		}
 		else if (((JTextComponent) e.getSource()).getName().equals("WP")) {
 			SingleFieldValidator zzVal = new SingleFieldValidator("WP", ((JTextComponent) e.getSource()).getText(), model, rowNr, this);
+			//System.out.println(zzVal.getErrMessage()+" 1");
 			errWPLab.setText(zzVal.getErrMessage());
+			//errWPLab.setEnabled(true);
+			//System.out.println(errWPLab.getText()+" 2");
 			valCheck = zzVal;
 		}
-		else if (((JTextComponent) e.getSource()).getName().equals("DK")) {
+		else if (((JTextComponent) e.getSource()).getName().equals("DK")) 
+		{
 			SingleFieldValidator zzVal = new SingleFieldValidator("DK", ((JTextComponent) e.getSource()).getText(), model, rowNr, this);
+			//System.out.println(zzVal.getErrMessage()+" 1");
 			errDKLab.setText(zzVal.getErrMessage());
+			//errDKLab.setEnabled(true);
+			//System.out.println(errDKLab.getText()+" 2");
 			valCheck = zzVal;
 		}
 		if(!valCheck.getValidationResult())	{
@@ -432,6 +425,7 @@ public class OpForm2 implements ActionListener, FocusListener {
 		}
 		else {
 			/*
+			 * tu trzebaby sprawdzić, czy zmieniły się dane we wszysktich okienkach - na razie mi się nie chce
 			if (!((JTextComponent) e.getSource()).getText().equals(""))	{
 				btnSave.setEnabled(true);
 			}
@@ -439,22 +433,12 @@ public class OpForm2 implements ActionListener, FocusListener {
 			btnSave.setEnabled(true);
 			btnNext.setEnabled(false);
 		}
-
+		SwingUtilities.updateComponentTreeUI(opForm);
+		opForm.invalidate();
+		opForm.validate();
+		opForm.repaint();
 		
 	}
-	/*
-	if (test == true) { //ten if pewnie też nie jest potrzebny
-		if (rowNr > liczbaWierszy) <------------------nie wie po co to jest? 
-			model.recordAdd(savedRow);
-		else
-			model.recordUpdate(savedRow, rowNr);
-		try {
-			new Zapis(model);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
 
-	}
-	*/ 
 }//koniec klasy
 

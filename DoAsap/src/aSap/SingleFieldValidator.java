@@ -20,7 +20,7 @@ public class SingleFieldValidator {
 	
 	public SingleFieldValidator(){}
 	
-	public SingleFieldValidator(String fieldName, String fieldValue, MainTableModel model, int rowNo)	{
+	public SingleFieldValidator(String fieldName, String fieldValue, MainTableModel model, int rowNo)	{//ten konstruktor do newForm
 		this.fieldName = fieldName;
 		this.model = model;
 		this.rowNr = rowNo;
@@ -47,7 +47,7 @@ public class SingleFieldValidator {
 		
 		
 	}//koniec konstruktora 1
-	public SingleFieldValidator(String fieldName, String fieldValue, MainTableModel model, int rowNo, OpForm2 opF) {
+	public SingleFieldValidator(String fieldName, String fieldValue, MainTableModel model, int rowNo, OpForm2 opF) {// nie wiem, do czego ten opF? Moze zeby rozróznic konstr
 		this.fieldName = fieldName;
 		this.model = model;
 		this.rowNr = rowNo;
@@ -168,16 +168,28 @@ public class SingleFieldValidator {
 					else valOrg(false,"nieprawidłowy format numeru_2");
 					if(trdPart.matches("[0-9]{7}")) valOrg(true,"");
 					else valOrg(false,"nieprawidłowy format numeru_3");
+					
 					if (fieldName.equals("WP"))	{
-						System.out.println(sndPart +"");
-						if (sndPart.equals(spolka))	valOrg(true,spolka+" "+sndPart);
-						else valOrg(false,"nieprawidłowy format numeru_4");
-						//System.out.println("fieldName: "+fieldName+" fstPart: "+fstPart+" sndPart: "+sndPart+" spolka "+spolka);
+						System.out.println(sndPart +" fN-> "+fieldName );
+						if (sndPart.equals(spolka))	{
+							valOrg(true,spolka+" "+sndPart);
+						}
+						else {
+							valOrg(false,"nieprawidłowy format numeru_4");
+							System.out.println("I am here "+ fieldName);
+						}
+						System.out.println("fieldName: "+fieldName+" fstPart: "+fstPart+" sndPart: "+sndPart+" spolka "+spolka);
 					}
 					if (fieldName.equals("DK"))	{
-						if (sndPart.equals(spolka))	valOrg(true,"");
-						else valOrg(false,"nieprawidłowy format numeru_4");
-						//System.out.println("fieldName: "+fieldName+" fstPart: "+fstPart+" sndPart: "+sndPart+" spolka "+spolka);
+						System.out.println(sndPart +" fN-> "+fieldName );
+						if (sndPart.equals(spolka))	{
+							valOrg(true,"");
+						}
+						else {
+							valOrg(false,"nieprawidłowy format numeru_4");
+							System.out.println("I am here "+ fieldName);
+						}
+						System.out.println("fieldName: "+fieldName+" fstPart: "+fstPart+" sndPart: "+sndPart+" spolka "+spolka);
 					}
 				}
 			}
