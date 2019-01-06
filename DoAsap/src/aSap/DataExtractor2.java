@@ -20,14 +20,14 @@ public class DataExtractor2 {
 	int rowCount;
 	
 	//CalendarTest ct; 
-	int dniMies;
+	//int dniMies;
 	Integer[] ZZHours;
 	Integer[] PZHours;
 	Integer[] DKHours;
 	
 	String cPLK, cPLI, cCPO;
 	
-	public DataExtractor2(MainTableModel model, int month, int year, CalendarTest ct, String u, String w, String v)	{
+	public DataExtractor2(MainTableModel model, int month, int year, int dniMies, String u, String w, String v)	{
 		
 		cPLK = u;
 		cPLI = w;
@@ -41,7 +41,16 @@ public class DataExtractor2 {
 		PZday = new ArrayList<Integer>();
 		DKday = new ArrayList<Integer>();
 		
-		monthStr = month+"";
+		if ((month+"").length()==1)	{
+			monthStr = "0"+month;
+		}
+		else	{
+			monthStr = month+"";
+		}
+		
+		
+		//System.out.println("DE2 monthStr: "+monthStr);
+		
 		yearStr = year+"";
 		mod = model;
 		rowCount = model.getRowCount();
@@ -49,7 +58,8 @@ public class DataExtractor2 {
 		extractData(1);
 		extractData(3);
 				
-		dniMies = ct.getDayNo(month);
+		//this.dniMies =  dniMies;
+		//System.out.println("DE2 dniMies: "+dniMies+" y: "+year);
 		
 		DataCreator ZZdc = new DataCreator(dniMies);
 		DataCreator PZdc = new DataCreator(dniMies);
@@ -102,7 +112,9 @@ public class DataExtractor2 {
 			if (!(("").equals(a)||a==null))	{ //czy data istnieje, jak nie, to skok do następnego wiersza
 				//System.out.println(a.substring(3, 5)+"  "+a.substring(6, 10));
 				if (a.length()>=10)	{
+					//System.out.println("DE2 "+a.substring(3, 5)+"  "+a.substring(6, 10));
 					if (a.substring(3, 5).equals(monthStr)&&a.substring(6, 10).equals(yearStr)) { //A) czy data spelnia warunek miesiąca i roku
+						//System.out.println("DE2 spełnia: "+a.substring(3, 5)+"  "+a.substring(6, 10));
 						if(!(cond1.equals(b)||cond2.equals(b)||cond3.equals(b)))	{//B0						//czy nazwa firmy - tu trzeba się zapytać
 							if (position == 0)	{
 								ZZ.add((String) mod.getValueAt(i, position));

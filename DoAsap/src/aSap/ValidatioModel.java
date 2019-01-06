@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
  */
 
 public class ValidatioModel {
-	 String[] ZZ = {"doesExist","checkFormat","toShort", "notNull"};
+	 String[] ZZ = {"checkFormat","toShort", "notNull"};
 	 String[] PZ = {"doesExist","checkFormat","toShort"};
 	 String[] WP = {"doesExist","checkFormat","toShort", "isPredecessor"};
 	 String[] DK = {"doesExist","checkFormat","toShort", "isPredecessor"};

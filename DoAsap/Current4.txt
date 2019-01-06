@@ -35,3 +35,4 @@ ZZ/CPO0006321;PZ/0002223332;WP/CPO0004567;DK/CPO0002221;zakonczone;aaa ccc ddd x
 ZZ/PLK0005919;PZ/0000004802;WP/PLK0003456;;aktywne;Zakup routerów 4G LTE LR77 v2 od producenta Advantech, na podstawie zaakceptowanego Memo z dnia 02/10/2018r ( w załączniku).;;Zakup routerów 4G LTE LR77;z wolnej ręki;PLK;02.01.2019;02.01.2019;02.01.2019;;
 ZZ/PLK0005993;PZ/0000009876;;;aktywne;aaa bbb ccc mmmm mmmmmmm mmmmmmmm mmmm gggggg  mgmgmgmgmg mgmgmhmhmhmh mgmgmgmgmggm mfmfmfm qqqqqq qqqq qq wwwwwwee rrrrrrrrrrrt yyyy;;abc;inne;PLK;02.01.2019;02.01.2019;;;
 ZZ/CPO0006343;;;;aktywne;gablota na medale;;gablota na medale;z wolnej ręki;CPO;03.01.2019;;;;
+ZZ/PLI0005869;;;;aktywne;Drugi, rezerwowy dostawca DWDM;;DWDM rugi dostawca;przetarg;PLI;05.01.2019;;;;

@@ -170,15 +170,15 @@ public class SingleFieldValidator {
 					else valOrg(false,"nieprawidłowy format numeru_3");
 					
 					if (fieldName.equals("WP"))	{
-						System.out.println(sndPart +" fN-> "+fieldName );
+						//System.out.println(sndPart +" fN-> "+fieldName );
 						if (sndPart.equals(spolka))	{
-							valOrg(true,spolka+" "+sndPart);
+							valOrg(true,"");
 						}
 						else {
 							valOrg(false,"nieprawidłowy format numeru_4");
-							System.out.println("I am here "+ fieldName);
+							//System.out.println("I am here "+ fieldName);
 						}
-						System.out.println("fieldName: "+fieldName+" fstPart: "+fstPart+" sndPart: "+sndPart+" spolka "+spolka);
+						//System.out.println("fieldName: "+fieldName+" fstPart: "+fstPart+" sndPart: "+sndPart+" spolka "+spolka);
 					}
 					if (fieldName.equals("DK"))	{
 						System.out.println(sndPart +" fN-> "+fieldName );
@@ -189,7 +189,7 @@ public class SingleFieldValidator {
 							valOrg(false,"nieprawidłowy format numeru_4");
 							System.out.println("I am here "+ fieldName);
 						}
-						System.out.println("fieldName: "+fieldName+" fstPart: "+fstPart+" sndPart: "+sndPart+" spolka "+spolka);
+						//System.out.println("fieldName: "+fieldName+" fstPart: "+fstPart+" sndPart: "+sndPart+" spolka "+spolka);
 					}
 				}
 			}
@@ -204,8 +204,6 @@ public class SingleFieldValidator {
 	public String getSpolka()	{
 		return spolka;
 	}
-	
-	
 
 }//koniec klasy
 

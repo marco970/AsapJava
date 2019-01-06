@@ -12,6 +12,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
 import net.miginfocom.swing.MigLayout;
 
 public class RaportForm extends RawForm implements ActionListener {
@@ -19,10 +21,7 @@ public class RaportForm extends RawForm implements ActionListener {
 
 	private JButton btnSave = new JButton("Generuj raport");
 	private JButton btnCancel = new JButton("Anuluj");
-	
 
-	
-	private JLabel lblNewLabel_4;
 	private JCheckBox plk;
 	private JCheckBox pli;
 	private JCheckBox cpo;
@@ -30,19 +29,21 @@ public class RaportForm extends RawForm implements ActionListener {
 	
 	private JComboBox<String> comboBoxMonth;
 	private JComboBox<Object> comboBoxYear;
-	private String[] months =
-				{"grudzień", 
-				"listopad",
-				"październik",
-				"wrzesień",
-				"sierpień",
-				"lipiec",
-				"czerwiec",
-				"maj",
-				"kwiecień",
-				"marzec",
-				"luty",
-				"styczeń"};
+
+	private String[] monate = {
+			"styczeń",
+			"luty",
+			"marzec",
+			"kwiecień",
+			"maj",
+			"czerwiec",
+			"lipiec",
+			"sierpień",
+			"wrzesień",
+			"październik",
+			"listopad",
+			"grudzień"};
+
 	private String[] monthArr = new String[12];
 	private ArrayList<String> yearList = new ArrayList<String>();
 	private MainTableModel model;
@@ -54,14 +55,23 @@ public class RaportForm extends RawForm implements ActionListener {
 		//data - miesiąc
 		Calendar cal = Calendar.getInstance();
 		
-		int m = cal.get(Calendar.MONTH)+1;
-		int l = m;
+		int a, b;
+		a = cal.get(Calendar.MONTH);
+		//a= 7;
+		//System.out.println(a +" "+ monate[a]);
+		//System.out.println("--------------------------------");
 
-		for (int i = m; i<=m+11; i++)	{
-			if (i<=11) l=i;
-			else l=i-12;
-			monthArr[i-m] =  months[l];
-			System.out.println(months[l]+" "+monthArr[i-m]+" "+i+" "+l+" "+m );
+		for (int i = 0; i<=11; i++)	{
+			if (a>=0)	{
+				b=a;
+			}
+			else {
+				b=a+12;
+			}
+			a--;
+			monthArr[i] = monate[b];
+			//System.out.println(a+" "+b+" "+monate[b]+" "+monthArr[i]);
+
 		}
 		//data - rok
 		int n = cal.get(Calendar.YEAR);
@@ -123,7 +133,7 @@ public class RaportForm extends RawForm implements ActionListener {
 			closeThisFrame();
 		}
 		if(command.equals("Generuj raport"))	{
-			ArrayList<String> monthsList = new ArrayList<String>(Arrays.asList(months));
+			ArrayList<String> monthsList = new ArrayList<String>(Arrays.asList(monate));
 			
 			String u = " ";
 			String w = " ";
@@ -135,17 +145,30 @@ public class RaportForm extends RawForm implements ActionListener {
 			
 			String a = comboBoxYear.getSelectedItem().toString();
 			int y = Integer.parseInt(a);
+			//System.out.println(((monthsList.indexOf(comboBoxMonth.getSelectedItem()))+1)+" "+comboBoxYear.getSelectedItem());// do wywalenia
+			//System.out.println(u+w+v); //do wywalenia
 			try {
-				new RaportExcell(model , "Marcin Kuciak", 12-monthsList.indexOf(comboBoxMonth.getSelectedItem()), y, u, w, v);
+				new RaportExcell(model , "Marcin Kuciak", monthsList.indexOf(comboBoxMonth.getSelectedItem()), y, u, w, v);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 			closeThisFrame();
-			System.out.println((monthsList.indexOf(comboBoxMonth.getSelectedItem()))+" "+comboBoxYear.getSelectedItem());// do wywalenia
-			System.out.println(u+w+v); //do wywalenia
+
 			
 		}
 
 
+	}
+	public static void main(String[] args) {		//do testów
+		
+		MainTableModel mod = new MainTableModel();
+		
+		
+		SwingUtilities.invokeLater(new Runnable() {
+		      @Override
+		      public void run() {
+		    	  new RaportForm(mod);
+		      }
+		    });
 	}
 }

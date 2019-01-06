@@ -16,15 +16,15 @@ public class CalendarTest {
 	                           "maj", "czerwiec", "lipiec", "sierpień",
 	                           "wrzesień", "październik", "listopad", "grudzień"
 	                         };
-	  static int[] ldni = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	  static int[] ldni = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 	  int rok;
 	  int mies;
 
 	  public CalendarTest(int rok, int month) {
 	     this.rok = rok;
-	     this.mies = month - 1;
-	     //System.out.println(mies+" "+nazwaMies[mies]);
+	     this.mies = month;
+	     //System.out.println("CT: mies " +mies+" "+nazwaMies[mies]+ " y: "+ rok+ " l_dni: "+getDayNo(month));
 	     //kalend.set(rok, mies);
 	     /*
 	     for (int i = 1; i<=ldni[mies]; i++)	{
@@ -34,7 +34,15 @@ public class CalendarTest {
 	     */
 	  }
 	  public int getDayNo(int month)	{
-		  return ldni[mies];
+		  int a = ldni[mies];
+		  if (month == 1 && rokPrzest()) a = 29;
+		  return a;
+	  }
+	  public boolean rokPrzest()	{
+		  //System.out.println("CT_rokPrzest: "+rok);
+		  boolean a = false;
+		  if ((rok - 2016)%4 == 0) a = true;
+		  return a;
 	  }
 	  
 	  public String getDayName(int dayNo) {

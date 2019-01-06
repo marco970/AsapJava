@@ -34,6 +34,7 @@ public class RaportExcell {
 			"BA", "BC", "BE", "BG", "BI", "BK"
 			};
 	private DataExtractor2 de;
+	//private String kupiec;
 	
 	//String cPLK, cPLI, cCPO;
 	
@@ -42,13 +43,16 @@ public class RaportExcell {
 		
 
 		
-		year = yearP;
-		month = monthP;
+		this.year = yearP;
+		this.month = monthP;
+		//this.kupiec = kupiec;
 		int rowNumber = 9;
 		CalendarTest ct = new CalendarTest(year, month);
 		int dniMies = ct.getDayNo(month);
 		
-		de = new DataExtractor2(model, monthP, yearP, ct, u, w, v);
+		de = new DataExtractor2(model, month+1, year, dniMies, u, w, v);
+		
+		//System.out.println("RE constr month: "+(month+1)+", year: "+year+", l. dni: "+dniMies);
 
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet(kupiec);
@@ -257,6 +261,7 @@ public class RaportExcell {
 				//generowanie zawartości
 				//(int j = 2; j<=dniMies*2-1+2; j=j+2)
 				
+				//System.out.println("RE  dniMies "+dniMies +" y: "+ year);
 			for (int i = 2; i<=dniMies*2-1+2; i=i+2)	{
 				String[] zz = new String[de.getExRow("ZZ").length];
 				String[] pz = new String[de.getExRow("PZ").length];
@@ -271,6 +276,7 @@ public class RaportExcell {
 				pzHours = de.getExHours("PZ");
 				dkHours = de.getExHours("DK");
 				
+				//System.out.println("RE i/2 : "+(i/2)+" dniMies "+dniMies);
 				cellArr[3][i+1].setCellValue(zz[i/2]);
 				cellArr[3][i+1].setCellStyle(cs1);
 				cellArr[3][i].setCellValue(zzHours[i/2]);
@@ -288,7 +294,7 @@ public class RaportExcell {
 			}
 
 				
-				workbook.write(new FileOutputStream(month+"_"+year+"_"+"_Raport.xls"));
+				workbook.write(new FileOutputStream(kupiec+"_TimeSheet_"+(month+1)+"_"+year+"_"+"_Raport.xls"));
 				workbook.close();	//ostatni wiersz
 				
 				
@@ -298,7 +304,7 @@ public class RaportExcell {
 				
 		}
 	public static void main(String[] args) throws IOException	{ //metoda do wywalenia
-		new RaportExcell(new MainTableModel(), "Marcin Kuciak", 11, 2018, "PLK", "", "");
+		new RaportExcell(new MainTableModel(), "Marcin Kuciak", 1, 2019, "PLK", "", "");
 		//do testów, potem wywalić metodę
 	}
 }
