@@ -72,6 +72,9 @@ public class EkranGlowny implements ActionListener {
 		//lista.setAutoCreateRowSorter(true);			//sortowanie najprościej
 		sorter = new TableRowSorter<MainTableModel>(dane);
 		//compare(dane.getValueAt(12, 11), dane.getValueAt(5, 11));
+		sorter.setComparator(0, new CompareZZ());
+		sorter.setComparator(2, new CompareZZ());
+		sorter.setComparator(3, new CompareZZ());
 		sorter.setComparator(10, new Compare());
 		sorter.setComparator(11, new Compare());
 		sorter.setComparator(12, new Compare());
