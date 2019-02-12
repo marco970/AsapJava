@@ -1,8 +1,12 @@
 package aSap;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.swing.JFileChooser;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -293,9 +297,17 @@ public class RaportExcell {
 				cellArr[5][i].setCellStyle(cs1);
 			}
 
+			String defaultPath = new JFileChooser().getFileSystemView().getDefaultDirectory().toString()+"\\02_TimeSheets\\";
+			new File(defaultPath).getAbsoluteFile().mkdirs();
+			File file = new File(defaultPath+kupiec+"_TimeSheet_"+(month+1)+"_"+year+"_"+"_Raport.xls");
+			FileOutputStream fos = new FileOutputStream(file);
+				workbook.write(fos);
+				//System.out.println(kupiec+"_TimeSheet_"+(month+1)+"_"+year+"_"+"_Raport.xls");
 				
-				workbook.write(new FileOutputStream(kupiec+"_TimeSheet_"+(month+1)+"_"+year+"_"+"_Raport.xls"));
-				workbook.close();	//ostatni wiersz
+				workbook.close();	
+				fos.close();
+				
+				Desktop.getDesktop().open(file);
 				
 				
 
@@ -304,7 +316,7 @@ public class RaportExcell {
 				
 		}
 	public static void main(String[] args) throws IOException	{ //metoda do wywalenia
-		new RaportExcell(new MainTableModel(), "Marcin Kuciak", 1, 2019, "PLK", "", "");
+		new RaportExcell(new MainTableModel(), "Marcin Kuciak", 11, 2018, "PLK", "", "");
 		//do testów, potem wywalić metodę
 	}
 }
