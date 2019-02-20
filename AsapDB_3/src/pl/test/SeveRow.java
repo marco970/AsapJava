@@ -20,7 +20,7 @@ public class SeveRow {
 		// pobranie sesji
 		Session session = factory.getCurrentSession();
 		Lista lista = new Lista();
-		lista.setZZ("ZZ/PLI0003457");
+		lista.setZZ("ZZ/PLI0003459");
 		session.beginTransaction();
 		// zapisanie pracownika
 		session.save(lista);
