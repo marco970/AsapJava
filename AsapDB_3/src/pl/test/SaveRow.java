@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 import pl.asap.entity.Lista;
 
-public class SeveRow {
+public class SaveRow {
 
 	public static void main(String[] args) {
 		// stworzenie obiektu Configuration
