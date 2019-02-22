@@ -134,7 +134,7 @@ public class MainTableModel extends AbstractTableModel {
 		}
 		return a;
 	}
-	public void recordAdd(Object[] savedRow) {
+	public void recordAdd(Object[] savedRow) {	//--zapis do DB
 		int n = getRowCount()+1;
 		//System.out.println("recordAdd, n: "+n + " ilość wierszy :"+getRowCount());
 		Object[][] daneUpd = new Object[n][nazwyKolumn.length];
@@ -146,7 +146,7 @@ public class MainTableModel extends AbstractTableModel {
 		fireTableRowsInserted(n-1, n-1);
 		fireTableDataChanged();
 	}
-	public void recordUpdate(Object[] savedRow, int rowNr) {
+	public void recordUpdate(Object[] savedRow, int rowNr) { //--zapis do DB
 		ArrayList<Object[]> rowList = new ArrayList<Object[]>();
 		for (int i = 0; i<=getRowCount()-1; i++)	{
 			rowList.add(dane[i]);
@@ -164,7 +164,7 @@ public class MainTableModel extends AbstractTableModel {
 		fireTableDataChanged();	
 		
 	}
-	public void cellUpdate(Object value, int rowNr, int kolNr)	{
+	public void cellUpdate(Object value, int rowNr, int kolNr)	{ //--zapis do DB
 		dane[rowNr][kolNr] = value;
 		fireTableCellUpdated(rowNr, kolNr);
 	}
