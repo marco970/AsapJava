@@ -19,14 +19,16 @@ public class SaveRow {
 		SessionFactory factory = conf.buildSessionFactory();
 		// pobranie sesji
 		Session session = factory.getCurrentSession();
+		
 		Lista lista = new Lista();
 		lista.setZZ("ZZ/PLI0003459");
+		
 		session.beginTransaction();
 		// zapisanie pracownika
 		session.save(lista);
-		// zakoñczenie transakcji
+		// zakoï¿½czenie transakcji
 		session.getTransaction().commit();
-		// zamkniêcie obiektu SessionFactory
+		// zamkniï¿½cie obiektu SessionFactory
 		factory.close();
 
 	}

@@ -19,10 +19,11 @@ import javax.swing.JPanel;
 public class DBConnect {   
 	private static Connection myConn;
 	private static Statement stmt;
-	static JFrame frame;
-	static JLabel lab;
+	private static JFrame frame;
+	private static JLabel lab;
                 //private static String driverName = "com.mysql.jdbc.Driver";
-	String defaultPath;
+	private String defaultPath;
+	private Process proc;
 
 public DBConnect()        {
 	
@@ -30,7 +31,7 @@ public DBConnect()        {
 	System.out.println(defaultPath);
 	
 	try {
-		Process proc = Runtime.getRuntime().exec(defaultPath+"\\000_rough\\mysql\\bin\\mysqld_usbwv8.exe");
+		proc = Runtime.getRuntime().exec(defaultPath+"\\000_rough\\mysql\\bin\\mysqld_usbwv8.exe");
 		//Process process = new ProcessBuilder("U:\\git\\AukcjaDo\\1\\AukcjaDo1\\000_rough\\usbwebserver.exe").start();
 	} catch (IOException e1) {
 		e1.printStackTrace();
@@ -38,7 +39,7 @@ public DBConnect()        {
 	
 	//mysqld_usbwv8.exe
 	
-	
+	/*
 	frame = new JFrame("siema");
 	frame.setSize(790, 100);
 	JPanel pane = new JPanel();                          
@@ -46,7 +47,8 @@ public DBConnect()        {
 	pane.add(lab);
 	frame.add(pane);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame.setVisible(false);
+	frame.setVisible(true);
+	*/
 	
 	for (int i = 0; i < 4; i++) {
 		try {
@@ -77,6 +79,18 @@ public DBConnect()        {
 			new DBConnect();
 		}
 	});
+	}
+	public void zabij()	{
+		proc.destroy();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (processCheck("mysqld_usbwv8.exe")) System.out.println("proces zabity");
+		else System.out.println("proces jednak nie zabity");
+		
 	}
 	
 	public boolean processCheck(String processName)	{

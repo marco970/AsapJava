@@ -6,12 +6,12 @@ import org.hibernate.cfg.Configuration;
 
 public abstract class TransBlank {
 	
-		private SessionFactory factory;
-		private Session session;
+		protected SessionFactory factory;
+		protected Session session;
 		private Object bean;
 		
 	
-	public TransBlank(String hibernateConf, Object bean, String fieldName)		{
+	public TransBlank(String hibernateConf, Object bean)		{
 
 		Configuration conf = new Configuration();
 		conf.configure(hibernateConf);

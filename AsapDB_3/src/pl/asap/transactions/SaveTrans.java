@@ -8,7 +8,7 @@ public class SaveTrans extends TransBlank {
 	
 	
 	public SaveTrans (String hibernateConf, Object bean, String fieldName, String value)	{
-		super(hibernateConf, bean, fieldName);
+		super(hibernateConf, bean);
 		Method method = null;
 		String methodName = "set"+fieldName;
 		try {
@@ -25,6 +25,7 @@ public class SaveTrans extends TransBlank {
 		}
 			
 		exeTransaction();
+		System.out.println("zakończono SaveTrans");
 		
 		
 	}
